@@ -1,0 +1,3654 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Settling In</title>
+
+		
+		<style>
+			body {
+				background: #333;
+				padding-top: 5em;
+				display: flex;
+				justify-content: center;
+			}
+			table {
+				border-collapse: collapse;
+				border-spacing: 0;
+				line-height: 0;
+				margin: auto; text-align: center;
+			}
+			.filler { width:100px; height:100px; }
+			#player_scope img { width:48px; height:48px }
+
+			#player_logs {
+				text-align: left !important;
+				line-height: 1 !important;
+				background: #222;
+				border: 2px solid #3ff;
+				border-collapse: separate !important;
+				border-spacing: 0 !important;
+				width: 900px;
+				height: 400px;
+				overflow-y: scroll;
+				padding: 8px;
+				border-radius: 5px;
+				box-sizing: border-box;
+				box-shadow: 5px 3px #fa5;
+			}
+		
+			#player_location {
+				text-align: left !important;
+				line-height: 1 !important;
+				background: #222;
+				border: 2px solid #fa5;
+				border-collapse: separate !important;
+				border-spacing: 0 !important;
+				padding: 8px;
+				border-radius: 5px;
+				min-height: 32px;
+				min-width: 240px;
+				height: 32px;
+				width: 240px;
+			}
+			#player_beacons {
+				text-align: left !important;
+				line-height: 1 !important;
+				background: #222;
+				border: 2px solid #3ff;
+				border-collapse: separate !important;
+				border-spacing: 0 !important;
+				padding: 8px;
+				border-radius: 5px;
+				min-height: 360px;
+				min-width: 240px;
+				height: 360px;
+				width: 240px;
+				overflow-y: scroll;
+			}
+
+			code{
+				color :#999;
+				font-family: monospace;
+				line-height: 1 !important;
+				text-align: center !important;			
+			}
+
+			.post{
+				color: #f33;
+				font-family: monospace;
+				line-height: 1 !important; 
+				border-right: .15em solid orange; /* The typwriter cursor */
+				overflow: hidden; /* Ensures the content is not revealed until the animation */
+				white-space: nowrap;
+				margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+
+				animation: 
+					typing 3.5s steps(30, end),
+					blink-caret .5s step-end infinite;
+			}
+
+			/* The typing effect */
+			@keyframes typing {
+				from { width: 0 }
+				to { width: 100% }
+			}
+
+			/* The typewriter cursor effect */
+			@keyframes blink-caret {
+				from, to { border-color: transparent }
+				50% { border-color: orange }
+			}
+
+			#game_status {
+				color: #777;
+				margin: auto; 
+				text-align: center;
+			}
+
+
+			h1{
+				font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace;
+				line-height: 1 !important;
+				color: #222;
+				text-align: center !important;
+			}
+			h3{ 
+				color:#3ff; 
+				font-family: Lucida Console, Lucida Sans Typewriter, monaco, Bitstream Vera Sans Mono, monospace; 
+				text-align: center !important;
+}
+			p {
+				color :#fff;
+				font-family: monospace;
+				line-height: 1 !important;
+				text-align: center !important;
+			}
+
+
+
+			.highlightB{color:#3ff}
+			.highlightG{color:#3f3}
+			.highlightR{color:#f33}
+			.highlightO{color:#fa5}
+			pre {
+				margin: 0;
+				color :#fff;
+				font-family: monospace;
+				white-space: pre-wrap;
+				line-height: 1 !important;
+			}
+
+			#progBar0 {
+				width: 100%;
+				background-color: #777;
+			}
+
+			#progBar {
+				width: 10%;
+				height: 30px;
+				background-color: #3cf;
+				text-align: center;
+				line-height: 30px;
+				color: white;
+			}
+
+			#togctrl{
+				text-align: left !important;
+				line-height: 1 !important;
+			}
+
+			.input0 {
+				width: 100%;
+				padding: 12px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				box-sizing: border-box;
+				margin-top: 6px;
+				margin-bottom: 16px;
+				-webkit-transition-duration: 0.4s; /* Safari */
+				transition-duration: 0.4s;
+				background-color: #fa5;
+				color: white;
+				cursor: pointer;
+			}
+			.input0:hover {background-color: #b61}
+			.input0:active {
+				background-color: #3ff;
+				box-shadow: 0 5px #666;
+				transform: translateY(4px);
+			}
+			.input1 {
+				background-color: #333 !important;
+				color: #777 !important;
+				cursor: pointer;
+			}
+			.input2 {
+				background-color: #333 !important;
+				color: #777 !important;
+				cursor: pointer;
+			}
+			.input2:hover {background-color: #222 !important;}
+			.input2:active {
+				background-color: #222 !important;
+				box-shadow: 0 5px #666;
+				transform: translateY(4px);
+			}
+
+
+			.input3 {
+				background: #444 !important;
+				color: #fa5 !important;
+				cursor: pointer;
+			}
+			.input3:hover {
+				color: #b61 !important;
+				background: #555;
+			}
+			.input3:active {
+				color: #3ff !important;
+				box-shadow: 0 2px #333;
+				transform: translateY(2px);
+			}
+
+			#ctrl {
+				line-height: 1 !important;
+				border-collapse: separate !important;
+			}
+			#ctrl strong{
+				cursor: pointer;
+				line-height: 1 !important;
+				background: #444 !important;
+				color: #999;	
+				font-size:32px;
+			}
+			#ctrl strong:hover{
+				background: #555;
+				color: #fa5;
+
+			}
+			#ctrl strong:active{
+				color: #3ff;
+				transform: translateY(2px);
+			}
+			#ctrl_center{
+				color: #fa5 !important;
+				background: #555;
+			}
+
+			.scrollbar::-webkit-scrollbar {
+				width: 10px;
+				background-color: #F5F5F5;
+			}
+			.scrollbar::-webkit-scrollbar-track {
+				border-radius: 10px;
+				background: rgba(0,0,0,0.1);
+				border: 1px solid #ccc;
+			}
+
+			.scrollbar::-webkit-scrollbar-thumb {
+				border-radius: 10px;
+				background: linear-gradient(left, #fff, #e4e4e4);
+				border: 1px solid #aaa;
+			}
+
+			.scrollbar::-webkit-scrollbar-thumb:hover {
+				background: #fa5;
+			}
+
+			.scrollbar::-webkit-scrollbar-thumb:active {
+				transition: background 1s ease;
+				background: #3ff;
+			}
+
+			iframe {
+				display: block;
+				margin: 0 auto;
+				background-color: #777;
+			}
+
+		</style>
+
+	</head>
+	<body>
+		<main>
+
+
+
+
+
+<table id="debug" style="display:none"> <tr>
+	<td><div id="keydown"> </div></td>
+	<td><div id="keyup"> </div></td> </tr>
+</table>
+
+<div id="homepage" style="display:block">
+	<center>
+	<h1>Settling In</h1>
+	<p>The following is a short non-profit game made referencing elements from Subnautica that are</p>
+	<p>Copyright © 2017 Unknown Worlds Entertainment, Inc.</p>
+	<br>
+	<p>The game is played using WASD to move. Interact with the world by 'moving' into things.
+	<br /> During some text events controls will be temporarily paused as seen in the status bar.
+	<br />A short intro video will play before you head into the world.</p>
+	<input type='button' id="home_start" value="Start Game" class="input0" onclick="progressbar();" />
+	<br /> 	<br /> 	<br />
+	<div id="progBar0" style="display:none">
+		<div id="progBar">10%</div>
+	</div>
+	<p>References media content that are Copyright © 2017 Unknown Worlds Entertainment, Inc.</p>
+	</center>
+	<input type='button' value="DEV" onclick="DEV();" style="display:none"/>
+</div>
+<div id="creditspage" style="display:none">
+	<p>Made by 'JiJae' for ENG279 at UTM.</p>
+	<p>A short non-profit game made referencing elements from Subnautica.</p>
+	<p>Artwork elements borrowed from various media.</p>
+	<p>Audio primarily from Subnautica.</p>
+	<p>Copyright © 2017 Unknown Worlds Entertainment, Inc.</p>
+	<br /><br />
+	<h3> Thanks for playing! </h3>
+</div> 
+
+
+<div id="credits2" style="display:none">
+	<div id="player"></div>
+</div>
+	
+
+
+
+
+<div id="bgm" style="display:none">
+	<audio id="world_bgm" loop controls>
+		<source src="src/overworld.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="cave_bgm" loop controls>
+		<source src="src/cave.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="alert_bgm" controls>
+		<source src="src/alienalert.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="credits_bgm" controls>
+		<source src="src/credits.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+
+	<audio id="losthope_bgm" controls>
+		<source src="src/losthope.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="owAmb_bgm" controls loop>
+		<source src="src/ambience.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="uwcAmb_bgm" controls loop>
+		<source src="src/waterambience.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="seamothEnter_bgm" controls>
+		<source src="src/seamoth_enter.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="seamothStart_bgm" controls>
+		<source src="src/seamoth_start.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="seamothStop_bgm" controls>
+		<source src="src/seamoth_stop.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="seamothMove_bgm" loop controls>
+		<source src="src/seamoth_move.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="seamothFail_bgm" controls>
+		<source src="src/seamoth_fail.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="retreat_bgm" controls>
+		<source src="src/retreat.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="destroyed_bgm" controls>
+		<source src="src/destroyed.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="caution_bgm" controls>
+		<source src="src/caution.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="warning_bgm" controls>
+		<source src="src/warning.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="danger_bgm" controls>
+		<source src="src/danger.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="reaper_bgm" controls>
+		<source src="src/reaper.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+	<audio id="wreck_bgm" controls>
+		<source src="src/inevitable.mp3" type="audio/mpeg">
+		Your browser does not support the audio element.
+	</audio>
+</div>
+
+
+<div id="intro" style="display:none">
+	<input type='button' value="skip intro" class="input2" onclick="introVid.pause(); display_game(); startGame();" />
+	<br /> 
+	<video id="intro_video" width=640 height= 480 >
+		<source src="src/intro.mp4" type="video/mp4">
+		Your browser does not support the video tag.
+	</video> 
+</div>
+
+
+
+
+<div id="game_view" style="display:none">
+	<table>
+		<tr id="togctrl" style="display:none"><td> <input type='button' value="toggle controls" class="input1" onclick="toggle_ctrl()" /> </td></tr>
+		<tr><td><div>   &nbsp;   </div></td></tr>
+		<tr><td><div>   &nbsp;   </div></td></tr>
+		<tr>
+			<table>
+				<tr>
+					<td id="scope_view" style="display:none">
+						<div id="player_scope"></div>
+					</td>
+					<td id="losthope" style="display:none">
+						<video id="losthope_video" width=432 height= 432 muted>
+							<source src="src/losthope.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video> 
+					</td>
+					<td id="reaper_view" style="display:none">
+						<video id="reaper_video" width=432 height=432 muted>
+							<source src="src/reaper.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</td>
+					<td id="wreck_view" style="display:none">
+						<video id="wrecked_video" width=432 height=432 muted>
+							<source src="src/wreck.mp4" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</td>
+					<td class="filler">&nbsp;</td>
+					<td>
+						<table>
+							<tr><td><div id="player_location"> <code>Position: -- | --</code> </div></td></tr>
+							<tr><td><div id="player_beacons"> </div></td></tr>
+						</table>
+					</td>
+				</tr>
+			</table>
+		</tr>
+		<tr><td>   
+			<table><tr>
+				<td>
+					<input type='button' id="dive_button" style="display:none" value="Dive" class="input3" onclick="dive()" /> 
+				</td>
+				<td>
+					<input type='button' value="Deploy MVB" id="deploy_mvb" style="display:none" class="input3" onclick="deployMVB()" /> 
+				</td>
+			</tr></table>
+		</td></tr>
+		<tr><td>	<div id="ctrl" style="display:none">
+					<table>
+						<tr>
+							<td>&nbsp;</td>
+							<td><strong id="ctrl_n" class="control_button" onclick="controller('n')" />'n'</strong></td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td><strong id="ctrl_w" class="control_button" onclick="controller('w')" />-w</strong></td>
+							<td><strong id="ctrl_center" class="control_button" />-/\-</strong></td>
+							<td><strong id="ctrl_e" class="control_button" onclick="controller('e')" />e-</strong></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td><strong id="ctrl_s" class="control_button" onclick="controller('s')" />,s,</strong></td>
+							<td>&nbsp;</td>
+						</tr>
+					</table>		
+				</div>   </td></tr>
+		<tr><td>   &nbsp;   </td></tr>
+		
+		<tr>
+			<td><div id="game_status">_________</div></td>
+		</tr>
+		<tr><td>   &nbsp;   </td></tr>
+		<tr><td>   	<div id="player_logs" class="scrollbar" style="display:none"> 
+
+				</div>  </td></tr>
+		<tr><td>   &nbsp;   </td></tr>
+		<tr><td>   &nbsp;   </td></tr>
+		<tr><td>   &nbsp;   </td></tr>
+		<tr><td>   <div id="overworld_map" style="display:none"> </div>   </td></tr>
+		<tr><td>   <div id="cave_map" style="display:none"> </div>   </td></tr>
+		<tr><td>   <div id="uwcave_map" style="display:none"> </div>   </td></tr>
+		<tr><td>   <div id="dialogue" style="display:none"> 
+<!-- START DIALOGUE -->
+<pre id="initial_logs">
+
+[User has regained consciousness. Rebooting to emergency survival mode.]
+
+[User has lost consciousness. Situation critical. Executing support AI protocol L10A. 
+	Suit functionality temporarily overriden. Taking necessary steps to protect the user.]
+
+[Initializing emergency atmospheric entry procedure. Brace for turbulence.]
+
+[Entering gravitational pull of nearby planet.]
+
+[EMERGENCY SITUATION. ALL PERSONEL ARE TO BOARD THE NEAREST LIFEPOD.]
+
+[Detecting mass energy readings from nearby planet.]
+
+</pre>
+<pre id="init_dialogue1"> 
+[Booting up emergency survival mode...] </pre>
+<pre id="init_dialogue2"> 
+[Load complete.
+	You have suffered minor head trauma. This is considered an optimal outcome.] </pre>
+<pre id="init_dialogue3"> 
+[This support suit has now rebooted in emergency mode with one directive: 
+	to keep you alive on an alien world.] </pre>
+<pre id="init_dialogue4"> 
+[Databank and short range scan utilities are fully operational.
+	Unfortunately it is detected that the lifepod's fabricator tool has been irrepairibly damaged.] </pre>
+<pre id="init_dialogue5"> 
+[A large land mass is detected north of this location. 
+	It is suggested to install the upgrade module located on the wing compartments of the lifepod.
+	Emergency survival tools can be found on the opposite wing compartment.
+	The Navigation Beacon has been set to the lifepod.
+	Good luck.] </pre>
+
+
+<pre id="time_event1"> 
+[It may help to remember that problems exist only where you choose to see them.] </pre>
+
+<pre id="time_event2"> 
+[After weeks without human contact, it is normal to experience psychological discomfort. 
+	Research indicates symptoms may be partly alleviated by adopting a pet, or anthropomorphizing an inanimate object.] </pre>
+
+
+
+<pre id="lifepodL1"> 
+"Hmm... here's an upgrade module"  </pre>
+<pre id="lifepodL2"> 
+[This upgrade module is damaged and non-operational] </pre>
+<pre id="lifepodL3"> 
+"Darn... maybe the others will have better luck with their modules. I should go find them."  </pre>
+
+
+
+<pre id="lifepodR1"> 
+"Here's the emergency habitat materials... Okay, time to find a location to set up." </pre>
+<pre id="lifepodR2"> 
+[It is imperative to find sustenance and a suitible location to install the emergency habitat.
+	Precaution is advised while exploring. ] </pre>
+
+
+
+<pre id="crashzone"> 
+[Evidence suggests that the lifepod has suffered terminal damage. 
+	No life signs can be detected near the crash zone.
+	It is suggested to salvage any beneficial tools and materials.] </pre>
+
+
+<pre id="module1"> 
+[This upgrade module is functional.] </pre>
+<pre id="module2"> 
+"Found the upgrade module... but..." </pre>
+<pre id="module3"> 
+[Installing upgrade module...] </pre>
+<pre id="module4"> 
+[Load complete. Initializing scan of local ecosystem...] </pre>
+<pre id="module5"> 
+[Scan complete. 
+	Initial long range scans suggests that the local ecosystem supports extensive biodiversity both above and below ocean level.
+	Further study recommended.] </pre>
+
+
+
+<pre id="mountain"> 
+*It's too steep, I can't climb up.* </pre>
+
+
+<pre id="water1"> 
+"I should set up a temporary habitat and survey the land first." </pre>
+<pre id="water2"> 
+[Scans suggest the Endurance has crashed further south from this site.
+	Database comparison concludes that the support suit will enable you to safely explore shallow waters.] </pre>
+
+
+
+ 
+<pre id="deepwater1"> 
+*I can't go any farther without support gear or a vehicle*  </pre>
+<pre id="deepwater1b"> 
+*In the distance I can barely makeout the silhoutte of the Endurance wreck and some floating debris*  </pre>
+<pre id="deepwater2"> 
+[Scans of ocean water make up indicate a diverse and distinct ecological biomes and wildlife under water.
+		Wildlife is sparse in the local biome.] </pre>
+
+<pre id="deepwater3"> 
+[Long range scans indicate great depths of multiple thousands of meters.
+	Calculations suggest that what you are located on is a volcanic crater.] </pre>
+<pre id="deepwater4"> 
+[Detecting a diversity in Leviathan class fauna in the depths away from the crater. 
+	It is unrecommended to pursue further travel without the appropriate survival tools.] </pre>
+
+
+
+<pre id="cliff"> 
+*That's a long way down... I should be careful*  </pre>
+<pre id="crevice"> 
+[Detecting volcanic activity, and several unusual electromagnetic signatures in the region. 
+	Exercise caution when exploring.] </pre>
+
+
+
+<pre id="sinkhole1"> 
+[Calculations suggest the surface collapsed millenia ago due to erosion by water currents. 
+	Multiple subterranean cavern systems can be detected.] </pre>
+
+<pre id="sinkhole2"> 
+[Long range scans indicate subterranean cavern systems surpassing a depth of several thousand kilometers. 
+	Volcanic activity and foreign electromagnetic signatures are detected deeper than 1200 kilometers.] </pre>
+
+
+
+
+<pre id="flora"> 
+[Surface flora are host to multiple micro-organisms but evidence suggests that the local ecosystem does not sustain larger organisms.] </pre>
+
+
+
+<pre id="oddtree"> 
+[Scans suggest that this plant is foreign to the ecosystem, indicating that a third party had planted it at a previous time.] </pre>
+
+
+
+<pre id="ore1"> 
+"It's too bad that the onboard fabricator isn't functional... " </pre>
+<pre id="ore2"> 
+"If the onboard fabricator was functional I could've made a variety of tools and vehicles with this much visible ore deposits..." </pre>
+<pre id="ore3"> 
+[It is likely that the storm has eroded surface minerals and exposed underlying ores. 
+	Without proper tools from the Endurance, harvesting these ores is not possible.] </pre>
+
+
+
+<pre id="rock"> 
+[Scans of surface minerals suggests strong volcanic activity in the region. 
+	Remember that materials you gather are the property of the Alterra corporation. 
+	You will be liable to reimburse the full market price for any used materials.
+	Your current standing is nine thousand and one credits.] </pre>
+
+
+
+<pre id="debris1"> 
+"more debris from the crash..." </pre>
+<pre id="debris2"> 
+[Debris can be collected and disassembled for various useful materials used in crafting survival equipment. ] </pre>
+
+
+
+<pre id="leviathan1"> 
+"I'm glad I wasn't around when this thing was alive and kicking..." </pre>
+<pre id="leviathan2"> 
+[The fossilized remains of a Leviathan class preditor, dated at approximately three million years old. 
+	Calculations suggest it was in its infantile stages, and that this is only the front third of the organism.
+	It is likely that in it's juvenile state this leviathan feeds on other fauna found in the volcanic crater until it must migrate to more open waters.] </pre>
+<pre id="leviathan3"> 
+[There are a series of precise, angular indentations on the rib cage, suggesting a third party has taken samples from the specimen at a previous time.
+	It is likely the carcass was bought on land for study purposes.] </pre>
+
+
+
+<pre id="flatland1"> 
+[This location is suitable to build the emergency habitat.] </pre>
+<pre id="flatland2"> 
+[Initializing remote assistant protocol E1.] </pre>
+<pre id="flatland3"> 
+[It may be prudent to separate work and leisure spaces to maximize productivity.
+	Treat this space as your home, but never forget that it is not.
+	Consider keeping a photo-journal of your achievements to motivate you in times of despair.]  </pre>
+<pre id="flatland4"> 
+[The emergency habitat has been completed.
+	You have taken a critical step toward self-sufficiency.] </pre>
+<pre id="flatland5"> 
+[Manual activation is needed to enable the communications system. 
+	Communication tower located on the south side of the habitat.] </pre>
+
+
+
+<pre id="comms1"> 
+[Authorization accepted. Initializing communication systems. Connecting to nearest communications relay...] </pre>
+<pre id="comms2"> 
+[Connection failure. Detecting various signal jamming technologies preventing planetary communication systems.
+	Further scans are required to determine the best course of action. 
+	Survival is of utmost priority.
+	--
+	The Navigation Beacon has been set to the communication tower.] </pre>
+
+
+
+
+
+
+<pre id="cave1"> 
+[It is recommended to procure a functional upgrade module to extend the exploration tools available to the user.] </pre>
+
+<pre id="cave2"> 
+"It sure is dark in here... i better walk carefully"  </pre>
+<pre id="cave3"> [Detecting unusual electromagnetic signatures deep within the cavern. 
+	These patterns match the energy signatures experienced before the Endurance crash.
+	Caution is advised.] </pre>
+
+<pre id="cave4"> 
+[A reply to the distress signal has been received.
+	Return to the emergency habitat for further instruction.] </pre>
+
+
+
+
+<pre id="tablet1"> 
+[Ocean currents have eroded mineral in the rock surface to create subterranean caverns. 
+	Scans suggest an intelligent being had built structures in those caverns some millenia ago.
+	Detecting faint electromagnetic signatures from below.
+	It is too deep to explore the caverns.] </pre>
+
+<pre id="tablet2"> 
+"There's something shining a few meters down. Maybe that's what I'm looking for!" </pre>
+<pre id="tablet3"> 
+[Scans suggest that this object is a highly complex device made with technologies unknown to the databank. 
+	The level of technology is far beyond the levels of the federation, and so there is no obvious way to interface with it.
+	Despite the algae growth on the exterior indicating that it was abandoned for multiple centuary, the onboard power is still functioning.] </pre>
+<pre id="tablet4"> 
+[Energy patterns emitted from the device are identical to that from the nearby alien facility.] </pre>
+
+
+	
+<pre id="alienbase1"> 
+"i wasn't among the first visitors to this planet..." </pre>
+<pre id="alienbase2"> 
+[Scans indicate this facility is one of the orgins of signal readings. 
+	Calculations suggest that the facility entrance is currently locked, but functional.] </pre>
+
+
+
+
+
+<pre id="aliensys1"> 
+{ALERT}  </pre>
+<pre id="aliensys2"> 
+"Woah!" </pre>
+<pre id="aliensys3"> 
+@$^='*\ !2#$*_&"(>:! ~97!`#& </pre>
+<pre id="aliensys4"> 
+[Attempting translation...] </pre>
+<pre id="aliensys5"> 
+[Translation complete. The message translates:
+	-Planetary-communication-jammer disabled.-] </pre>
+<pre id="aliensys6"> 
+"..."   </pre>
+<pre id="aliensys7"> 
+[Diagnostics indicate communication with the nearest space station are re-established. Distress signal has been sent.
+	It is suggested to return to the emergency habitat.] </pre>
+
+
+
+<pre id="reply1"> 
+[This is the Nautica station on planet 4546B.
+We have received your distress signal and will be sending a rescue team shortly.] </pre>
+<pre id="reply2"> 
+[You'll be safe soon...] </pre>
+<pre id="reply3"> 
+[We'll get you back home.] </pre>
+
+<strong id="blink" style="width:4px;font-size:16px;" class="blink"> - </strong>
+<strong id="post" style="width:400px;font-size:16px;" class="blink"> #*(8;9@_-].5TargetAcquired^"d%+ 3,|=[= </strong>
+
+
+
+
+
+<pre id="beacon_crash"> 
+[Detecting lifepod signatures from the north-eastern region. 
+	Procaution is advised while exploring. ] </pre>
+
+<pre id="beacon_flatland"> 
+[Scans suggest that a suitable building location can be found in the proximity of the lifepod.
+	Creating beacon towards the approximate location.]  </pre>
+
+<pre id="beacon_cave"> 
+[Detecting strong electromagnetic signatures.
+	Creating a beacon towards the approximate location.
+	Precaution is advised.]  </pre>
+
+<pre id="beacon_tablet"> 
+[Detecting weak energy patterns matching the facility entrance interface from the south east of this location.
+	Positional comparison suggests that the signal is coming from an area near the lifepod crash site, likely in the shallow waters.] </pre>
+
+
+
+
+
+<pre id="rescue"> 
+[The alien weapon system is armed. 
+	It is necessary to disable the system to leave this planet.
+	---
+	Detecting strong energy signature movement from the alien base, likely hostile.
+	Evasive action is recommended. 
+	It may be prudent to search the shipwreck for equipment that will increase chances for survival.
+	Creating a beacon towards the approximate location.]
+  </pre>
+
+<pre id="retreat"> 
+[Hostile detected nearby! It is imperative to retreat to a safer distance!]  </pre>
+
+<pre id="dive0"> 
+*I can't dive here...* </pre>
+
+<pre id="dive1"> 
+*found some seaweed...*  </pre>
+
+<pre id="dive2"> 
+*didn't find anything...*  </pre>
+
+<pre id="dive3"> 
+*only broken stuff...*  </pre>
+
+<pre id="ascend"> 
+*I can't ascend here...* </pre>
+
+<pre id="materials"> 
+*these materials might be useful*  </pre>
+
+<pre id="salvaged1"> 
+*I found something!* </pre>
+
+<pre id="salvaged2"> 
+[You have acquired a Mobile Vehicle Bay.
+	Deploy the device in nearby waters.] </pre>
+
+<pre id="mvb1"> 
+[The blueprints to craft a SeaMoth are available.
+	Materials must be provided.
+	Gather (3) materials from debris or the wreck to create a SeaMoth.] </pre>
+
+<pre id="mvb2"> 
+[Insufficient materials.]  </pre>
+
+<pre id="mvb3"> 
+[Sufficient materials. Creating SeaMoth.]  </pre>
+
+<pre id="seamoth"> 
+[The SeaMoth can with stand pressure of 1000 meters of depth.
+	It is now possible to explore the underwater caverns to the sourth-east of the habitat.
+	Calculations suggest that an entrance to the alien control facility may be found at a depth of 950 meters.]  </pre>
+
+<pre id="deepwater5"> 
+[The SeaMoth is not equipped with a reinforced exterior nor a defensive system.
+	Continuing further into hostile waters is not recommended.]  </pre>
+
+<pre id="depth1"> 
+[Reaching depth of 200 meters. 
+	Scans suggest aggresive fauna may be encountered in these underwater caverns.
+	Precaution is strongly advised.]  </pre>
+<pre id="depth2"> 
+[Reaching depth of 400 meters.]  </pre>
+<pre id="depth3"> 
+[Reaching depth of 500 meters.]  </pre>
+<pre id="depth4a"> 
+[Reaching depth of 800 meters.]  </pre>
+<pre id="depth4b"> 
+[Detecting strong biologica- ac-ivi--. 
+	Ther- -- st--ng --ectr--agn-t-- d--t-rb----.]  </pre>
+<pre id="smFail1"> 
+[Sea-oth Sys--m Failur-.]  </pre>
+<pre id="smFail2"> 
+[WARN--G! Cre-tur-e Atta-k!]  </pre>
+
+<!-- END DIALOGUE -->
+		</div>   </td></tr>
+			
+	</table>
+</div>
+
+
+
+
+
+
+
+
+		</main>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+<script>
+
+var introVid = document.getElementById("intro_video");
+var owBGM = document.getElementById("world_bgm");
+var caveBGM = document.getElementById("cave_bgm");
+var creditsBGM = document.getElementById("credits_bgm");
+var alertBGM = document.getElementById("alert_bgm");
+
+var losthopeVid = document.getElementById("losthope_video");
+var reaperVid = document.getElementById("reaper_video");
+var wreckVid = document.getElementById("wrecked_video");
+var losthopeBGM = document.getElementById("losthope_bgm");
+var amb1BGM = document.getElementById("owAmb_bgm");
+var amb2BGM = document.getElementById("uwcAmb_bgm");
+var smEnterBGM = document.getElementById("seamothEnter_bgm");
+var smStartBGM = document.getElementById("seamothStart_bgm");
+var smStopBGM = document.getElementById("seamothStop_bgm");
+var smMoveBGM = document.getElementById("seamothMove_bgm");
+var smFailBGM = document.getElementById("seamothFail_bgm");
+var retreatBGM = document.getElementById("retreat_bgm");
+var destroyedBGM = document.getElementById("destroyed_bgm");
+var cautionBGM = document.getElementById("caution_bgm");
+var warningBGM = document.getElementById("warning_bgm");
+var dangerBGM = document.getElementById("danger_bgm");
+var reaperBGM = document.getElementById("reaper_bgm");
+var wreckBGM = document.getElementById("wreck_bgm");
+
+smEnterBGM.customVol = 0.6;
+smStartBGM.customVol = 0.6;
+smMoveBGM.customVol = 0.4;
+smFailBGM.customVol = 0.6;
+
+smEnterBGM.volume = smEnterBGM.customVol;
+smStartBGM.volume = smStartBGM.customVol;
+smMoveBGM.volume = smMoveBGM.customVol;
+smFailBGM.volume = smFailBGM.customVol;
+
+
+
+var statusTO = null;
+var smMoveTO = null;
+
+var map = null;
+var cave = null;
+var scope = null;
+
+var current_location = null; //ow,cave 
+var standing_on = null; //sand,grass,water,dirt
+var paused = true;
+var pos = new Pair(null,null); 
+var nextpos = new Pair(null,null);
+
+var upgraded = false;
+var obj0L = false; //left supply
+var obj0R = false; //right supply
+var obj1 = false;
+var obj2 = false;
+var obj3 = false;
+//var tablet = false; //to simplify, rid of alien wall immediately instead & replace tablet img
+var end1 = false;
+
+var obj4 = false;
+var obj5 = false;
+var obj6 = false;
+var materials = 0;
+var warning = false;
+var danger = false;
+
+var diag_water = true; 
+var diag_deepwater1 = true; 
+var diag_deepwater2 = true; 
+var diag_rock = true; 
+var diag_ore = true; 
+var diag_crevice1 = true; 
+var diag_sinkhole1 = true; 
+var diag_crevice2 = true; 
+var diag_sinkhole2 = true; 
+var diag_flora = true; 
+var diag_oddtree = true; 
+var diag_leviathan = true;
+var diag_tablet = true;
+
+var diag_retreat = true;
+var diag_deepwater_sm = true;
+var diag_depth1 = true;
+var diag_depth2 = true;
+var diag_depth3 = true;
+var diag_depth4 = true;
+
+var beacon = new Pair(28,70);
+var beacons = {
+	"flatland" : 	{	"id" : "Approx. flat lands",
+				"pos": new Pair(46,51),
+				"loc": "ow"
+			},
+	"crash" : 	{	"id" : "Crew lifepod signal",
+				"pos": new Pair(94,6),
+				"loc": "ow"
+			},
+	"cave" : 	{	"id" : "Strong energy signal",
+				"pos": new Pair(38,9),
+				"loc": "ow"
+			},
+	"tablet" : 	{	"id" : "Matching energy signal",
+				"pos": new Pair(86,76),
+				"loc": "ow"
+			},
+	"uwcave" : 	{	"id" : "Underwater Caverns",
+				"pos": new Pair(86,76),
+				"loc": "ow"
+			},
+	"wreck" : 	{	"id" : "Approx. Sunken Shipwreck",
+				"pos": new Pair(55,90),
+				"loc": "ow"
+			},
+	"mvb" : 	{	"id" : "Mobile Vehicle Bay",
+				"pos": new Pair(null,null),
+				"loc": "ow"
+			},
+	"seamoth" : 	{	"id" : "SeaMoth signal",
+				"pos": new Pair(null,null),
+				"loc": "ow"
+			},
+	"hostile" : 	{	"id" : "Hostile Entity",
+				"pos": new Pair(38,11),
+				"loc": "ow"
+			}
+/* deprec
+	"reaper1" : 	{	"id" : "Aggresive Creature",
+				"pos": new Pair(87,13),
+				"loc": "uwcave"
+			},
+	"reaper2" : 	{	"id" : "Aggresive Creature",
+				"pos": new Pair(58,50),
+				"loc": "uwcave"
+			}
+*/
+};
+var active_signals = [];
+
+var credits2 = true;
+
+var plog = document.getElementById('player_logs');
+
+function newLog(id,rgb,TO) {
+	newtxt = document.getElementById(id);
+	if ((rgb == "r") || (rgb == "R")){
+		document.getElementById(id).setAttribute("class","highlightR");
+	}
+	else if ((rgb == "g") || (rgb == "G")){
+		document.getElementById(id).setAttribute("class","highlightG");
+	}
+	else if ((rgb == "b") || (rgb == "B")){
+		document.getElementById(id).setAttribute("class","highlightB");
+	}
+	else if ((rgb == "o") || (rgb == "O")){
+		document.getElementById(id).setAttribute("class","highlightO");
+	}
+	plog.insertBefore(document.getElementById(id), plog.childNodes[0]);
+	typer = setupTypewriter(document.getElementById(id));
+	typer.type();
+	if ( TO > 0 ){
+		setTimeout( function(){document.getElementById(id).removeAttribute('class');}, TO);
+	}
+}
+
+
+
+
+document.addEventListener('keydown', handleKeydown);
+
+function handleKeydown(eventkey){
+	//document.getElementById("keydown").innerHTML = "keydown: "+eventkey.which;
+	switch(eventkey.which){
+		case keyVal['w']:
+			controller("n");
+			break;
+		case keyVal['a']:
+			controller("w");
+			break;
+		case keyVal['s']:
+			controller("s");
+			break;
+		case keyVal['d']:
+			controller("e");
+			break;
+		default:
+			break;
+	}
+}
+var keyVal = {
+	"w": 87,
+	"a": 65,
+	"s": 83,
+	"d": 68,
+	"up": 38,
+	"down": 40,
+	"left": 37,
+	"right": 39
+};
+
+
+
+function hide(id){ document.getElementById(id).setAttribute("style","display:none"); }
+
+function show(id){ document.getElementById(id).setAttribute("style","display:block"); }
+
+function changeKlas(id, toAdd, toRemove){
+	var elem = document.getElementById( id );
+	elem.classList.remove( toRemove );
+	elem.classList.add( toAdd );
+}
+
+//random int between min and max-1
+function randInt(min, max) { return Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min))) + Math.ceil(min); }
+
+function Pair(x,y){ this.x=x; this.y=y; }
+
+function Stage(width, height, id){
+	this.width = width;
+	this.height = height;
+	this.id = id;
+}
+
+Stage.prototype.initialize = function(base, klas){
+	var table = document.createElement("table");
+	table.setAttribute("border","0");
+	table.setAttribute("cellspacing","0");
+	table.setAttribute("cellpadding","0");
+	table.setAttribute("id","stage_table");
+	for (var h = 1; h <= this.height; h++){
+		var row = document.createElement("tr");
+		for (var w = 1; w <= this.width; w++){
+			var cell = document.createElement("td");
+			var content = document.createElement("img");
+			content.setAttribute("id", this.id+"("+w+","+h+")");
+			content.setAttribute("src", base); 
+			content.setAttribute("class", klas);
+			cell.appendChild(content);
+			row.appendChild(cell);
+		}
+		table.appendChild(row);
+	}
+	var divElem = document.getElementById(this.id);
+	divElem.innerHTML = "";
+	divElem.appendChild(table);
+}
+
+Stage.prototype.getType = function(x, y){ return document.getElementById(this.id+"("+x+","+y+")").getAttribute("class"); }
+Stage.prototype.getImage = function(x, y){ return document.getElementById(this.id+"("+x+","+y+")").getAttribute("src"); }
+
+Stage.prototype.getStageId = function(x,y){ return this.id+"("+x+","+y+")"; }
+
+Stage.prototype.setImage = function(x, y, src, klas){
+	var content = document.getElementById(this.id+"("+x+","+y+")");
+	content.setAttribute("src", src);
+	content.setAttribute("class", klas);
+}
+Stage.prototype.setImage2 = function(x, y, src, klas, styl){
+	var content = document.getElementById(this.id+"("+x+","+y+")");
+	content.setAttribute("src", src);
+	content.setAttribute("class", klas);
+	content.setAttribute("style", styl);
+}
+
+Stage.prototype.setImages = function (x,dx , y,dy , src,klas){
+	for (var h = y; h <= dy; h++){	
+		for (var w = x; w <= dx; w++){
+			this.setImage(w,h,src,klas);
+		}
+	}
+}
+
+
+
+
+function play_intro() { 
+	hide("homepage");
+	hide("game_view");
+	show("intro");
+	introVid.onended = function() {	display_game();	startGame(); };
+	introVid.play();
+}
+
+
+
+function setStatus(stat){ //set status and a timeout to blank out the status info
+	document.getElementById("game_status").textContent = stat;
+	if ((statusTO != undefined) && (statusTO != null)){ clearTimeout(statusTO); }
+	statusTO = setTimeout(function(){ document.getElementById("game_status").textContent = "_________"; } , 4000);
+}
+function setStatus2(stat){
+	document.getElementById("game_status").innerHTML = "<strong>"+stat+"</strong>";
+	document.getElementById("game_status").setAttribute("style","color:#950000;text-shadow: 2px 2px #FF0000;");
+}
+function fadeOut(bgm){
+	var fadeTO = 100;
+	var fadeVol = bgm.volume;
+	var fade = 0.05;
+	var fadeSeg = 100;
+	while (fadeVol > 0.1){
+		setTimeout(function(){ bgm.pause() ;bgm.volume-=fade; bgm.play(); },fadeTO);
+		fadeTO += fadeSeg;
+		fadeVol -= fade;
+	}
+	setTimeout(function(){
+		bgm.pause();
+		if (bgm.customVol != undefined){
+			bgm.volume = bgm.customVol;
+		}
+		else { bgm.volume = 1; }
+	},fadeTO+fadeSeg);
+}
+
+function display_game(){
+	hide("intro");
+	hide("homepage");
+	hide("creditspage");
+	hide("credits2");
+	show("game_view");
+	//show("player_scope");
+	show("scope_view");
+	show("player_logs");
+	show("togctrl");
+	//show("ctrl");
+}
+
+var ctrl_tog = false;
+function toggle_ctrl(){
+	if (ctrl_tog == false){
+		ctrl_tog = true;
+		show("ctrl");
+	}
+	else {
+		ctrl_tog = false;
+		hide("ctrl");
+	}
+}
+
+function DEV(){ //asdf
+	hide("homepage");
+	show("game_view");
+	//show("overworld_map");
+	//show("cave_map");
+	show("uwcave_map");
+	map = new Stage(100,100,"overworld_map");
+	cave = new Stage(50,25,"cave_map");
+	uwcave = new Stage(100,60,"uwcave_map");
+	map.initialize("src/img/grass.png", "grass"); 
+	cave.initialize("src/img/dark.png", "wall");
+	uwcave.initialize("src/img/underwater.png","water"); 
+	makeOverworld();
+	makeCave();
+	makeUnderwatercave(); 
+	scope = new Stage(9,9,"player_scope"); //5,5 center
+	scope.initialize("src/img/dark.png", "sight"); //scope img class doesn't matter
+	circularScope();
+	blankScope();
+	current_location = "ow";
+	standing_on = "sand";
+	pos.x= 28;
+	pos.y= 70;		
+	getScope(pos.x,pos.y);
+	scope.setImage(5,5,"src/img/p-sand-s.png","sight");
+	//show("player_scope");
+	show("scope_view");
+	show("player_logs");
+	show("togctrl");
+	paused = false;
+	//show("bgm");
+}
+
+
+
+
+function controlPause(TO){ //work around to textevent distortion bug
+	paused = true;
+	setStatus('-___ctrl paused___-');
+	setTimeout(function(){
+		setStatus('###___ctrl resumed___###');
+		paused = false;
+	},TO);
+}
+
+function controller(key) {
+	if (paused == false){
+		var ahead = null;
+
+		// determine co-ords
+		if (key == "n"){
+			nextpos.x = pos.x; 
+			nextpos.y = pos.y-1;
+		}
+		else if (key == "s"){
+			nextpos.x = pos.x; 
+			nextpos.y = pos.y+1;
+		}
+		else if (key == "w"){
+			nextpos.x = pos.x-1; 
+			nextpos.y = pos.y;
+		}
+		else if (key == "e"){
+			nextpos.x = pos.x+1; 
+			nextpos.y = pos.y;
+		}
+		else {alert("something went wrong! controller_err1"); return;}
+
+		// get the block ahead
+		if (current_location == "ow"){
+			ahead = map.getType(nextpos.x, nextpos.y);
+		}
+		else if (current_location == "cave"){
+			ahead = cave.getType(nextpos.x, nextpos.y);
+		}
+		else if (current_location == "uwcave"){
+			ahead = uwcave.getType(nextpos.x, nextpos.y);
+		}
+		else {alert("something went wrong! controller_err2"); return;}
+	
+		// cause event
+		if (ahead == null){alert("something went wrong! controller_err3"); return;}
+		else if (ahead == "wall"){
+			//text deprec
+		}
+		else if (ahead == "grass"){
+			pos.x = nextpos.x;
+			pos.y = nextpos.y;
+			getScope(pos.x,pos.y);
+			standing_on = "grass";
+		}
+		else if (ahead == "sand"){
+			if (standing_on == "seamoth_ow"){
+				controlPause(1000);
+				if (smStartBGM.paused == false){
+					fadeOut(smStartBGM);
+					clearTimeout(smMoveTO);
+				}
+				if (smMoveBGM.paused == false){
+					fadeOut(smMoveBGM);
+				}
+				smStopBGM.pause();
+				smStopBGM.currentTime = 0;
+				smStopBGM.play();
+				beacons["seamoth"].pos.x = pos.x;
+				beacons["seamoth"].pos.y = pos.y;
+				addSignal("seamoth");
+				map.setImage(pos.x, pos.y ,"src/img/seamoth-n.png","seamoth");
+				setTimeout(function(){
+					pos.x = nextpos.x;
+					pos.y = nextpos.y;
+					getScope(pos.x,pos.y);
+					standing_on = "sand";
+					scope.setImage(5,5,"src/img/p-sand-n.png","sight");
+					getPos();
+					updateSignals();
+				},900);
+			}
+			else{
+				pos.x = nextpos.x;
+				pos.y = nextpos.y;
+				getScope(pos.x,pos.y);
+				standing_on = "sand";
+			}
+		}
+		else if (ahead == "dirt"){
+			pos.x = nextpos.x;
+			pos.y = nextpos.y;
+			getScope(pos.x,pos.y);
+			standing_on = "dirt";
+		}
+		else if (ahead == "water"){
+			if (current_location == "ow"){
+				if (warning == true) { warning = false; }
+				if (danger == true) { danger = false; }
+				if (standing_on == "seamoth_ow"){
+					pos.x = nextpos.x;
+					pos.y = nextpos.y;
+					getScope(pos.x,pos.y);
+				}
+				else if (obj1 == true){
+					standing_on = "water";
+					pos.x = nextpos.x;
+					pos.y = nextpos.y;
+					getScope(pos.x,pos.y);
+				}
+				else if (diag_water == true){
+					diag_water = false;
+					standing_on = "sand";
+					//controlPause(4200);
+					newLog("water1","g",3000);
+					setTimeout(function(){
+						newLog("water2","b",4000);
+					},1000);
+				}
+			}
+			else if (current_location == "uwcave"){
+				if (warning == true) warning = false;
+				if (danger == true) danger = false;
+				pos.x = nextpos.x;
+				pos.y = nextpos.y;
+				getScope(pos.x,pos.y);
+			}
+		}
+		else if (ahead == "deepwater"){
+			if (standing_on == "water"){
+				//standing_on = "water";
+				newLog("deepwater1","g",2000);
+				controlPause(2000); //temp
+				if ((upgraded == true) && (diag_deepwater2 == true)){
+					diag_deepwater2 = false;
+					setTimeout(function(){
+						newLog("deepwater3","b",5000);
+					},1000);
+					setTimeout(function(){
+						newLog("deepwater4","b",6000);
+					},6000);
+					//controlPause(6000);
+				}
+				else if (diag_deepwater1 == true){
+					diag_deepwater1 = false;
+					setTimeout(function(){
+						newLog("deepwater1","g",3000);
+					},2400);
+					setTimeout(function(){
+						newLog("deepwater2","b",5000);
+					},1000);
+					//controlPause(4400);
+				}
+			}
+			else if (standing_on == "seamoth_ow"){
+				if (diag_deepwater_sm == true){
+					diag_deepwater_sm = false;
+					newLog("deepwater5","b",4000);
+				}
+			}
+		}
+
+		else if (ahead == "rock"){
+			if (diag_rock == true){
+				diag_rock = false;
+				standing_on = "grass";
+				//controlPause(6000);
+				newLog("rock","b",6000);
+			}
+		}
+		else if (ahead == "ore"){
+			if (diag_ore == true){
+				diag_ore = false;
+				standing_on = "grass";
+				//controlPause(6000);
+				newLog("ore1","g",2000);
+				setTimeout(function(){
+					newLog("ore2","g",3000);
+				},2000);
+				setTimeout(function(){
+					newLog("ore3","b",4000);
+				},3000);
+			}
+		}
+		else if (ahead == "crevice"){
+			if (diag_crevice1 == true){
+				diag_crevice1 = false;
+				standing_on = "grass";
+				newLog("cliff","g",2000);
+				// controlPause(2000);
+			}
+			if ((upgraded == true) && (diag_crevice2 == true)){
+				diag_crevice2 = false;
+				setTimeout(function(){
+					newLog("crevice","b",3000);
+				},400);
+				//controlPause(4000);
+			}
+		}
+		else if (ahead == "sinkhole"){
+			if (diag_sinkhole1 == true){
+				diag_sinkhole1 = false;
+				standing_on = "grass";
+				newLog("cliff","g",2000);
+				setTimeout(function(){
+					newLog("sinkhole1","b",3000);
+				},400);
+				//controlPause(3000);
+			}
+			if ((upgraded == true) && (diag_sinkhole2 == true)){
+				diag_sinkhole2 = false;
+				setTimeout(function(){
+					newLog("sinkhole2","b",3000);
+				},400);
+				//controlPause(5000);
+			}
+		}
+		else if (ahead == "flora"){
+			if (diag_flora == true){
+				diag_flora = false;
+				standing_on = "grass";
+				//controlPause(2400);
+				newLog("flora","b",2400);
+			}
+		}
+		else if (ahead == "oddtree"){
+			if (diag_oddtree == true){
+				diag_oddtree = false;
+				standing_on = "grass";
+				//controlPause(2400);
+				newLog("oddtree","b",2400);
+			}
+		}
+		else if (ahead == "leviathan"){
+			if (diag_leviathan == true){
+				diag_leviathan = false;
+				standing_on = "grass";
+				//controlPause(7000);
+				newLog("leviathan1","g",2000);
+				setTimeout(function(){
+					newLog("leviathan2","b",6000);
+				},400);
+				setTimeout(function(){
+					newLog("leviathan3","b",4000);
+				},6000);
+			}
+		}
+		else if (ahead == "lifepodL"){
+			standing_on = "sand";
+			map.setImage(26,72 ,"src/img/lifepod-a2.png","wall");
+			map.setImage(26,73 ,"src/img/lifepod-a3.png","wall");
+			controlPause(3000);
+			newLog("lifepodL1","g",1500);
+			setTimeout(function(){
+				newLog("lifepodL2","b",2000);
+			},2000);
+			if (upgraded == false){
+				setTimeout(function(){
+					newLog("lifepodL3","g",3000);
+				},3200);
+				setTimeout(function(){
+					newLog("beacon_crash","b",4000);
+					addSignal("crash");
+					updateSignals();
+				},15000);
+			}
+			obj0L = true;
+		}
+		else if (ahead == "lifepodR"){
+			standing_on = "sand";
+			map.setImage(29,72 ,"src/img/lifepod-d2.png","wall");
+			map.setImage(29,73 ,"src/img/lifepod-d3.png","wall");
+			controlPause(3000);
+			newLog("lifepodR1","g",2500);
+			setTimeout(function(){
+				newLog("lifepodR2","b",2500);
+			},2000);
+			obj0R = true;
+		}
+		else if (ahead == "crashzone"){
+			standing_on = "grass";
+			if (obj2 == false){
+				newLog("crashzone","b",3000);
+				obj2 = true;
+			}
+			pos.x = nextpos.x;
+			pos.y = nextpos.y;
+			getScope(pos.x,pos.y);
+		}
+		else if (ahead == "module"){
+			standing_on = "grass";
+			map.setImage(94,6 ,"src/img/grass.png","grass");
+			upgraded = true;
+			setTimeout(function(){
+				removeSignal("crash");
+				updateSignals();
+			},13000);
+			newLog("module1","b",1500);
+			setTimeout(function(){
+				newLog("module2","g",1500);
+			},700);
+			setTimeout(function(){
+				newLog("module3","b",1200);
+			},2000);
+			setTimeout(function(){
+				newLog("module4","b",1500);
+			},3500);
+			setTimeout(function(){
+				newLog("module5","b",4000);
+			},5000);
+			if (obj1 == false){
+				setTimeout(function(){
+					newLog("beacon_flatland","b",4000);
+					addSignal("flatland");
+					updateSignals();
+				},14000);
+			}
+			setTimeout(function(){
+				newLog("beacon_cave","b",4000);
+				addSignal("cave");
+				updateSignals();
+			},30000);
+			getScope(pos.x,pos.y);
+		}
+		else if (ahead == "debris"){
+			if (obj5 == true){
+				controlPause(600);
+				materials++;
+				newLog("materials" ,"g",700);
+				map.setImage(nextpos.x, nextpos.y ,"src/img/grass.png","grass");
+				getScope(pos.x,pos.y);
+			}
+			else{
+				standing_on = "grass";
+				controlPause(1200);
+				newLog("debris1","g",900);
+			}
+		}
+		else if (ahead == "flatland"){
+			standing_on = "grass";
+			newLog("flatland1","b",1400);
+			if ((obj0R == true)){ //(obj0L == true) && 
+				paused = true;
+				setTimeout(function(){
+					newLog("flatland2","b",1500);
+				},1800);
+				setTimeout(function(){
+					build_habitat();
+				},2600);
+			}
+			else { controlPause(1400); }
+		}
+		else if (ahead == "habitat"){
+			standing_on = "grass";
+			if (end1 == true){
+				ending1();
+			}
+		}
+		else if (ahead == "comms"){
+			standing_on = "grass";
+			if (obj1 == false){
+				controlPause(3200);
+				beacon = beacons["flatland"].pos;
+				//beacon.x = 46;
+				//beacon.y = 47;
+				getPos();
+				newLog("comms1","b",2800);
+				setTimeout(function(){
+					newLog("comms2","b",4000);
+				},3000);
+				obj1 = true;
+			}
+			else if (end1 == true){
+				ending1();
+			}
+		}
+		else if (ahead == "cave"){
+			if (upgraded == false){
+				standing_on = "grass";
+				controlPause(2000);
+				newLog("cave1","b",2000);
+			}
+			else if (upgraded == true){
+				controlPause(1200);
+				if (current_location == "ow"){
+					//owBGM.pause();
+					fadeOut(owBGM);
+					newLog("cave2","g",2000);
+					setTimeout(function(){
+						newLog("cave3","b",4000);
+					},1400);
+					current_location = "cave";
+					standing_on = "dirt";
+					pos.x = 47;
+					pos.y = 12;
+					blankScope();
+					setStatus("=== Entered Dark Cave ===");
+					setTimeout(function(){
+						caveBGM.pause();
+						caveBGM.currentTime = 0;
+						caveBGM.play();
+						getScope(pos.x,pos.y);
+					},1000);
+				}
+				else if (current_location == "cave"){
+					if (end1 == false){ //no music for effect
+						//caveBGM.pause();
+						fadeOut(caveBGM);
+						setTimeout(function(){
+							owBGM.pause();
+							owBGM.currentTime = 0;
+							owBGM.play();
+						},1000);
+					}
+					current_location = "ow";
+					standing_on = "grass";
+					pos.x = 39;
+					pos.y = 9;
+					blankScope();
+					setStatus("=== Escaped Dark Cave ===");
+					setTimeout(function(){
+						getScope(pos.x,pos.y);
+					},1000);
+				}
+			}
+		}
+		else if (ahead == "bones"){
+			standing_on = "dirt";
+			//text deprec
+		}
+		else if (ahead == "alienbase"){
+			standing_on = "dirt";
+			pos.x = nextpos.x;
+			pos.y = nextpos.y;
+			getScope(pos.x,pos.y);
+			if (obj3 == false){
+				newLog("alienbase1","g",2800);
+				setTimeout(function(){
+					newLog("alienbase2","b",4000);
+				},500);
+				setTimeout(function(){
+					newLog("beacon_tablet","b",4000);
+					addSignal("tablet");
+					updateSignals();
+				},15000);
+				obj3 = true;
+			}
+		}
+		else if (ahead == "tablet"){
+			standing_on = "water";
+			if (obj3 == true){
+				controlPause(1500);
+				removeSignal("tablet");
+				updateSignals();
+				newLog("tablet2","g",1800);
+				setTimeout(function(){
+					map.setImage(nextpos.x, nextpos.y ,"src/img/water.png","water");
+					newLog("tablet3","b",4000);
+					getScope(pos.x,pos.y);
+				},1400);
+				setTimeout(function(){
+					newLog("tablet4","b",2400);
+				},5800);				
+				cave.setImages(14,15, 15,17 ,"src/img/dirt.png","alienbase"); //enables alien base to be reached
+			}
+			else if (diag_tablet == true) {
+				diag_tablet = false;
+				//controlPause(6400);
+				newLog("tablet1","b",6000);
+			}
+		}
+		else if (ahead == "aliensys"){
+			if (end1 == false){
+				standing_on = "dirt";
+				//caveBGM.pause();
+				fadeOut(caveBGM);
+				alertBGM.pause();
+				alertBGM.currentTime = 0;
+				alertBGM.play();
+				controlPause(10000);
+				setTimeout(function(){
+					newLog("aliensys1","r",0);
+				},2400);
+				setTimeout(function(){
+					newLog("aliensys2","g",600);
+				},2500);
+				setTimeout(function(){
+					newLog("aliensys3","r",0);
+				},3000);
+				setTimeout(function(){
+					newLog("aliensys4","b",1000);
+				},5400);
+				setTimeout(function(){
+					newLog("aliensys5","b",5000);
+				},6400);
+				setTimeout(function(){
+					newLog("aliensys6","g",1000);
+				},10000);
+				setTimeout(function(){
+					newLog("aliensys7","b",5000);
+					end1 = true;
+				},12000);
+
+				//no music play for dramatic effect
+				/*setTimeout(function(){
+					caveBGM.pause();
+					caveBGM.currentTime = 0;
+					caveBGM.play();
+				},18000);*/
+			}s
+		}
+
+
+		else if (ahead == "mvb"){
+			if (materials < 3){
+				controlPause(600);
+				newLog("mvb2","o",1000);
+			}
+			else { 
+				controlPause(1500);
+				//paused = true;
+				newLog("mvb3","b",1200);
+				setTimeout(function(){
+					craftSM(); 
+				},1400);
+			}
+		}
+		else if (ahead == "seamoth"){
+			controlPause(300);
+			
+			smStartBGM.pause();
+			smMoveBGM.pause();
+			smStopBGM.pause();
+			smEnterBGM.pause();
+			smEnterBGM.currentTime = 0;
+			smEnterBGM.play();
+			smStartBGM.currentTime = 0;
+			smStartBGM.play();
+			smMoveTO = setTimeout(function(){
+				smMoveBGM.currentTime = 0;	
+				smMoveBGM.play();
+			},7450);	
+
+			var sm = map.getImage(nextpos.x, nextpos.y);
+			beacons["seamoth"].pos.x = null;
+			beacons["seamoth"].pos.y = null;
+			removeSignal("seamoth");
+			map.setImage(nextpos.x, nextpos.y ,"src/img/water.png","water");
+
+			setTimeout(function(){
+				pos.x = nextpos.x;
+				pos.y = nextpos.y;
+				getScope(pos.x,pos.y);
+				standing_on = "seamoth_ow";
+				scope.setImage(5,5, sm,"sight");
+				getPos();
+				updateSignals();
+			},200);
+			return;
+		}
+
+
+		else if (ahead == "depth1"){
+			if (diag_depth1 == true){
+				diag_depth1 = false;
+				newLog("depth1","b",4000);
+				pos.x = nextpos.x;
+				pos.y = nextpos.y;
+				getScope(pos.x,pos.y);
+				cautionBGM.pause();
+				cautionBGM.currentTime = 0;
+				cautionBGM.play();
+			}			
+		}
+		else if (ahead == "depth2"){
+			if (diag_depth2 == true){
+				diag_depth2 = false;
+				newLog("depth2","b",2000);
+				pos.x = nextpos.x;
+				pos.y = nextpos.y;
+				getScope(pos.x,pos.y);
+			}
+		}
+		else if (ahead == "depth3"){
+			if (diag_depth3	 == true){
+				diag_depth3 = false;
+				newLog("depth3","b",2000);
+				pos.x = nextpos.x;
+				pos.y = nextpos.y;
+				getScope(pos.x,pos.y);
+			}
+		}
+		else if (ahead == "depth4"){
+			if (diag_depth4 == true){
+				diag_depth4 = false;
+				newLog("depth4a","b",2000);
+				setTimeout(function(){
+					 newLog("depth4b","o",3000);
+				},2400);
+				pos.x = nextpos.x;
+				pos.y = nextpos.y;
+				getScope(pos.x,pos.y);
+			}
+		}
+		else if (ahead == "warning"){
+			if (warning == false){
+				warning = true;
+				if (danger == false){ //entering warning zone
+					warningBGM.pause();
+					warningBGM.currentTime = 0;
+					warningBGM.play();
+				}
+				else { //heading out from danger zone 
+					cautionBGM.pause();
+					cautionBGM.currentTime = 0;
+					cautionBGM.play();
+				}				
+			}
+			pos.x = nextpos.x;
+			pos.y = nextpos.y;
+			getScope(pos.x,pos.y);
+		}
+		else if (ahead == "danger"){
+			warning = false;
+			if (danger == false){
+				danger = true;
+				dangerBGM.pause();
+				dangerBGM.currentTime = 0;
+				dangerBGM.play();
+			}
+			pos.x = nextpos.x;
+			pos.y = nextpos.y;
+			getScope(pos.x,pos.y);
+		}
+		else if (ahead == "reaper"){
+			reaperEvent();
+		}
+
+		else if (ahead == "retreat"){
+			if (diag_retreat == true){
+				diag_retreat = false;
+				newLog("retreat","o",3000);
+				setTimeout(function(){
+					retreatBGM.pause();
+					retreatBGM.currentTime = 0;
+					retreatBGM.play();
+				},800);
+			}
+			pos.x = nextpos.x;
+			pos.y = nextpos.y;
+			getScope(pos.x,pos.y);
+		}
+		else if (ahead == "destroy"){
+			alienEvent();
+		}
+		else if (ahead == "deadzone"){
+			smFailEvent();
+		}
+
+
+
+
+
+		//set direction and img based on location
+		if (standing_on == "grass"){
+			if 	(key == "n"){ scope.setImage(5,5,"src/img/p-grass-n.png","sight"); }
+			else if (key == "s"){ scope.setImage(5,5,"src/img/p-grass-s.png","sight"); }
+			else if (key == "w"){ scope.setImage(5,5,"src/img/p-grass-w.png","sight"); }
+			else if (key == "e"){ scope.setImage(5,5,"src/img/p-grass-e.png","sight"); }
+		}
+		else if (standing_on == "sand"){
+			if 	(key == "n"){ scope.setImage(5,5,"src/img/p-sand-n.png","sight"); }
+			else if (key == "s"){ scope.setImage(5,5,"src/img/p-sand-s.png","sight"); }
+			else if (key == "w"){ scope.setImage(5,5,"src/img/p-sand-w.png","sight"); }
+			else if (key == "e"){ scope.setImage(5,5,"src/img/p-sand-e.png","sight"); }
+		}
+		else if (standing_on == "water"){
+			if 	(key == "n"){ scope.setImage(5,5,"src/img/p-water-n.png","sight"); }
+			else if (key == "s"){ scope.setImage(5,5,"src/img/p-water-s.png","sight"); }
+			else if (key == "w"){ scope.setImage(5,5,"src/img/p-water-w.png","sight"); }
+			else if (key == "e"){ scope.setImage(5,5,"src/img/p-water-e.png","sight"); }
+		}
+		else if (standing_on == "dirt"){
+			if 	(key == "n"){ scope.setImage(5,5,"src/img/p-dirt-n.png","sight"); }
+			else if (key == "s"){ scope.setImage(5,5,"src/img/p-dirt-s.png","sight"); }
+			else if (key == "w"){ scope.setImage(5,5,"src/img/p-dirt-w.png","sight"); }
+			else if (key == "e"){ scope.setImage(5,5,"src/img/p-dirt-e.png","sight"); }
+		}
+		else if (standing_on == "seamoth_ow"){
+			if 	(key == "n"){ scope.setImage(5,5,"src/img/seamoth-n.png","sight"); }
+			else if (key == "s"){ scope.setImage(5,5,"src/img/seamoth-s.png","sight"); }
+			else if (key == "w"){ scope.setImage(5,5,"src/img/seamoth-w.png","sight"); }
+			else if (key == "e"){ scope.setImage(5,5,"src/img/seamoth-e.png","sight"); }
+		}
+		else if (standing_on == "seamoth_dive"){
+			if 	(key == "n"){ scope.setImage(5,5,"src/img/seamoth_dive-n.png","sight"); }
+			else if (key == "s"){ scope.setImage(5,5,"src/img/seamoth_dive-s.png","sight"); }
+			else if (key == "w"){ scope.setImage(5,5,"src/img/seamoth_dive-w.png","sight"); }
+			else if (key == "e"){ scope.setImage(5,5,"src/img/seamoth_dive-e.png","sight"); }
+		}
+		
+		getPos();
+		updateSignals();	
+	}
+}
+
+
+function alienEvent(){
+	paused = true;
+	fadeOut(amb1BGM);
+	destroyedBGM.pause();
+	destroyedBGM.currentTime = 0;
+	destroyedBGM.play();
+	setTimeout(function(){
+		blankScope();
+		credits2 = false; //dont play credits2 for this event
+		setStatus2("a!$*DESTROYED#|+=&");
+	},1600);
+	setTimeout(function(){
+		credits();
+	},15000);
+	
+}
+function reaperEvent(){
+	paused = true;
+	setStatus2("A Terrible Fate...");
+	fadeOut(amb2BGM);
+	dangerBGM.pause();
+	dangerBGM.currentTime = 0;
+	dangerBGM.play();
+	setTimeout(function(){
+		blankScope();
+	},2200);
+	setTimeout(function(){
+		hide("scope_view");
+		show("reaper_view");
+		reaperVid.pause();
+		reaperVid.currentTime = 0;
+		reaperVid.play();
+		reaperVid.onended = function() { //on end display blank scope, then startPart2 after wait
+			//show("scope_view");
+			//hide("reaper_view");
+			setTimeout(function(){
+				credits();
+			},6400);
+		};
+		setTimeout(function(){
+			reaperBGM.pause();
+			reaperBGM.currentTime = 0;
+			reaperBGM.play();
+		},3100);
+		setTimeout(function(){
+			smMoveBGM.pause();
+		},3200);
+	},5000);
+}
+function smFailEvent(){
+	paused = true;
+	setStatus2("--LOsT--");
+	newLog("smFail1","o",0);
+	fadeOut(amb2BGM);
+	smFailBGM.pause();
+	smFailBGM.currentTime = 0;
+	smFailBGM.play();
+	setTimeout(function(){
+		fadeOut(smMoveBGM);
+		smStopBGM.pause();
+		smStopBGM.currentTime = 0;
+		smStopBGM.play();
+	},700);
+	setTimeout(function(){
+		newLog("smFail2","o",0);
+	},1800);
+	setTimeout(function(){
+		blankScope();
+		wreckBGM.pause();
+		wreckBGM.currentTime = 0;
+		wreckBGM.play();
+	},2400);
+	setTimeout(function(){
+		hide("scope_view");
+		show("wreck_view");
+		wreckVid.pause();
+		wreckVid.currentTime = 0;
+		wreckVid.play();
+		wreckVid.onended = function() {
+			//show("scope_view");
+			//hide("wreck_view");
+			setTimeout(function(){
+				credits();
+			},1500);
+		};
+	},9000);
+}
+
+
+function craftSM(){
+	materials -= 3;
+	newLog("seamoth","b",8000);
+	var x1 = beacons["mvb"].pos.x;
+	var y1 = beacons["mvb"].pos.y;
+	map.setImage(x1,y1, "src/img/craft_SM.gif","wall");
+	getScope(pos.x,pos.y);
+	setTimeout(function(){
+		map.setImage(x1, y1 ,"src/img/seamoth-s.png","seamoth");
+		removeSignal("mvb");
+		beacons["seamoth"].pos.x = beacons["mvb"].pos.x;
+		beacons["seamoth"].pos.y = beacons["mvb"].pos.y;
+		addSignal("seamoth");
+		beacons["mvb"].pos.x = null;
+		beacons["mvb"].pos.y = null;
+		updateSignals();
+		getScope(pos.x,pos.y);
+		//paused = false;
+	},3000);
+}
+
+function deployMVB(){
+	if (paused == false){
+		controlPause(500);
+		if ((current_location == "ow") && (standing_on == "water") && (obj4 == true) && (obj5 == false)){
+			var ahead = null;
+			if (scope.getImage(5,5) == "src/img/p-water-n.png"){
+				nextpos.x = pos.x; 
+				nextpos.y = pos.y-1;
+			}
+			else if (scope.getImage(5,5) == "src/img/p-water-s.png"){
+				nextpos.x = pos.x; 
+				nextpos.y = pos.y+1;
+			}
+			else if (scope.getImage(5,5) == "src/img/p-water-w.png"){
+				nextpos.x = pos.x-1; 
+				nextpos.y = pos.y;
+			}
+			else if (scope.getImage(5,5) == "src/img/p-water-e.png"){
+				nextpos.x = pos.x+1; 
+				nextpos.y = pos.y;
+			}
+			else {alert("something went wrong! deploy_err1"); return;}
+
+			ahead = map.getType(nextpos.x, nextpos.y);
+			if (ahead == null){alert("something went wrong! deploy_err2"); return;}
+			else if (ahead == "water"){
+				obj5 = true;
+				newLog("mvb1","b",5000);
+				map.setImage(nextpos.x, nextpos.y ,"src/img/MVB.png","mvb");
+				hide("deploy_mvb");
+				beacons["mvb"].pos.x = nextpos.x;
+				beacons["mvb"].pos.y = nextpos.y;
+				addSignal("mvb");
+				updateSignals();
+				getScope(pos.x,pos.y);
+			}
+		}
+	}
+}
+
+
+function dive(){
+	if (paused == false){
+		if ((current_location == "ow") && (standing_on == "water")){
+			controlPause(3200);
+			scope.setImage(5,5,"src/img/dive.gif","sight");
+			setTimeout(function(){
+				scope.setImage(5,5,"src/img/p-water-s.png","sight");
+			},3100);
+			if ((pos.x == 54) && (pos.y == 92) && (obj4 == false)){
+				obj4 = true;
+				setTimeout(function(){
+					newLog("salvaged1","g",1400);
+				},1400);
+				setTimeout(function(){
+					show("deploy_mvb");
+					newLog("salvaged2","b",3000);
+				},3000);
+			}
+			else if ( ((pos.x >= 52) && (pos.x <= 56))  &&  ((pos.y >= 90) && (pos.y <= 93)) ){
+				var rand = randInt(1,5);
+				if (rand == 4){
+					setTimeout(function(){
+						materials++;
+						newLog("materials" ,"g",1400);
+					},1400);
+				}
+				else{
+					setTimeout(function(){
+						newLog("dive"+rand ,"g",1400);
+					},1400);
+				}				
+			}
+			else {
+				setTimeout(function(){
+					newLog("dive"+randInt(1,4) ,"g",1400);
+				},1400);
+			}
+		}
+		else if ((current_location == "ow") && (standing_on == "seamoth_ow")){ // dive at tablet location 
+			if ( ((pos.x >= 85) && (pos.x <= 87))  &&  ((pos.y >= 75) && (pos.y <= 77)) ){
+				paused = true;
+				setStatus("=v= Descending =v=");
+				if (scope.getImage(5,5) == "src/img/seamoth-s.png") { scope.setImage(5,5,"src/img/seamoth_dive-s.png","sight"); }
+				else if (scope.getImage(5,5) == "src/img/seamoth-w.png") { scope.setImage(5,5,"src/img/seamoth_dive-w.png","sight"); }
+				else if (scope.getImage(5,5) == "src/img/seamoth-e.png") { scope.setImage(5,5,"src/img/seamoth_dive-e.png","sight"); }
+				else if (scope.getImage(5,5) == "src/img/seamoth-n.png") { scope.setImage(5,5,"src/img/seamoth_dive-n.png","sight"); }
+				setTimeout(function(){
+					scope.setImage(5,5,"src/img/water2.png","sight");
+				},1000);
+				setTimeout(function(){ 
+					scope.setImage(5,5,"src/img/water.png","sight");
+				},2000);
+				setTimeout(function(){
+					//amb1BGM.pause();
+					fadeOut(amb1BGM);
+					blankScope();
+					setStatus("=== Entered Underwater Caverns ===");
+				},3000);
+				setTimeout(function(){
+					current_location = "uwcave";
+					standing_on = "seamoth_dive";
+					pos.x = 93;
+					pos.y = 54;
+					blankScope();
+					amb2BGM.pause();
+					amb2BGM.currentTime = 0;
+					amb2BGM.play();
+					getScope(pos.x,pos.y);
+					scope.setImage(5,5,"src/img/seamoth_dive-n.png","sight");
+					paused = false;
+					document.getElementById('dive_button').setAttribute('value','Ascend');
+				},4000);
+			}
+			else {
+				controlPause(800);
+				newLog("dive0","g",1400);
+			}
+		}
+		else if ((current_location == "uwcave") && (standing_on == "seamoth_dive")){ // ascend
+			if ( ((pos.x >= 92) && (pos.x <= 94))  &&  ((pos.y >= 53) && (pos.y <= 55)) ){
+				paused = true;
+				setStatus("=^= Ascending =^=");
+				setTimeout(function(){
+					blankScope();
+					//amb2BGM.pause();
+					fadeOut(amb2BGM);
+					setStatus("=== Escaping Underwater Caverns ===");
+				},1000);
+				setTimeout(function(){
+						current_location = "ow";
+						standing_on = "seamoth_ow";
+						pos.x = 86;
+						pos.y = 76;
+						blankScope();
+						amb1BGM.pause();
+						amb1BGM.currentTime = 0;
+						amb1BGM.play();
+						getScope(pos.x,pos.y);
+						scope.setImage(5,5,"src/img/seamoth-s.png","sight");
+						paused = false;
+						document.getElementById('dive_button').setAttribute('value','Dive');
+				},3000);
+			}
+			else {
+				controlPause(800);
+				newLog("ascend","g",1400);
+			}
+		}
+		else {
+			controlPause(800);
+			newLog("dive0","g",1400);
+		}
+	}
+}
+
+
+function startPart2(){ // part2 intro text (reduced)
+	current_location = "ow";
+	standing_on = "grass";
+	pos.x= 47;
+	pos.y= 49;
+	newLog("rescue","b",9000);
+	paused = false;
+	getScope(pos.x, pos.y);
+	getPos();
+	scope.setImage(5,5,"src/img/p-grass-s.png","sight");
+	show("dive_button");
+	setTimeout(function(){
+		paused = false;
+		addSignal("hostile");
+		updateSignals();
+		amb1BGM.pause();
+		amb1BGM.currentTime = 0;
+		amb1BGM.play();
+	},1400);
+	setTimeout(function(){
+		addSignal("wreck");
+		updateSignals();
+	},5700);
+}
+function continued(){
+	display_game();
+	blankScope();
+	owBGM.pause();
+	paused = true;
+	newLog("blink","r",0);
+	//plog.insertBefore(document.getElementById("blink"), plog.childNodes[0]);
+	document.getElementById("blink").setAttribute("class","post highlightR");
+	setTimeout(function(){
+		document.getElementById("blink").removeAttribute('class');
+		newLog("post","r",0);
+		//plog.insertBefore(document.getElementById("post"), plog.childNodes[0]);
+		document.getElementById("post").setAttribute("class","post highlightR");
+	},3000);
+
+	setTimeout(function(){
+		alertBGM.pause();
+		alertBGM.currentTime = 0;
+		alertBGM.play();
+	},4000);
+	setTimeout(function(){
+		alertBGM.pause();
+		document.getElementById("post").classList.remove("post");
+	},11750);
+	setTimeout(function(){
+		hide("homepage");
+		//hide("game_view");
+		hide("scope_view");
+		show("losthope");
+		losthopeBGM.play();
+		setTimeout(function(){
+			losthopeVid.play();
+			losthopeVid.onended = function() { //on end display blank scope, then startPart2 after wait
+				display_game();
+				hide("losthope");
+				setTimeout(function(){
+					startPart2();
+				},10000);
+			};
+		},400);
+		setTimeout(function(){ //load part2 world elements during cutscene
+			setPart2();
+		},3000);
+	},11100);
+}
+
+function getPos(){
+	if (current_location == "ow"){
+		if ((beacon.x != null) && (beacon.y != null)){ 
+			document.getElementById("player_location").innerHTML = "<code>Position: "+(beacon.y - pos.y)+" | "+(pos.x - beacon.x)+"</code>";		
+		}
+	}
+	else { document.getElementById("player_location").innerHTML = "<code>Position: -- | --</code>";		 }
+}
+function addSignal(sig){
+	active_signals.splice(0, 0, sig);
+	//active_signals.push(sig);	//.push(beacons[sig]);
+}
+function removeSignal(sig){
+	var i = active_signals.indexOf(sig);
+	if (i >= 0){ active_signals.splice(i, 1); }
+}
+function updateSignals(){ 
+	// use pair coords make code seg  {id: {id:ID, pos:PAIR, loc:"ow"}}
+	var signals = document.getElementById("player_beacons");
+	signals.innerHTML = "";
+	s = "";
+	for (var i = 0; i < active_signals.length; i++){ 
+		var sig = beacons[active_signals[i]];
+		if ((current_location == "ow") && (sig.loc == "ow")){
+			s+= "<code>";
+			if ((pos.x - sig.pos.x) == 0) {
+				if ((pos.y - sig.pos.y) == 0) { s+="[ X]"; }
+				else if ((pos.y - sig.pos.y) > 0) { s+="[ N]"; }
+				else if ((pos.y - sig.pos.y) < 0) { s+="[ S]"; }
+			}
+			else if ((pos.y - sig.pos.y) == 0) {
+				if ((pos.x - sig.pos.x) > 0) { s+="[ W]"; }
+				else if ((pos.x - sig.pos.x) < 0) { s+="[ E]"; }
+			}
+			else {
+				if (((pos.x - sig.pos.x) > 0) && ((pos.y - sig.pos.y) > 0)) { s+="[NW]"; }
+				else if (((pos.x - sig.pos.x) > 0) && ((pos.y - sig.pos.y) < 0)) { s+="[SW]"; }
+				else if (((pos.x - sig.pos.x) < 0) && ((pos.y - sig.pos.y) > 0)) { s+="[NE]"; }
+				else if (((pos.x - sig.pos.x) < 0) && ((pos.y - sig.pos.y) < 0)) { s+="[SE]"; }
+			}
+			var distance = Math.sqrt(Math.pow((sig.pos.x - pos.x), 2) + Math.pow((sig.pos.y - pos.y), 2)).toFixed(1);
+			s+= "(" + sig.id + ") 		__Distance: " + distance + "</code><br /><br />";
+		}
+		//else if ((current_location == "") && (sig.loc == "")){ }
+	}
+	signals.innerHTML = s;
+}
+
+function build_habitat() { 
+	setTimeout(function(){
+		removeSignal("flatland");
+		updateSignals();
+	},15000);
+	paused = true;
+	getScope(46,47);
+	setTimeout(function(){
+		newLog("flatland3","b",5000);
+	},400);
+		scope.setImage(5,5, "src/img/autohammer.gif","sight");
+	setTimeout(function(){
+		scope.setImage(4,4, "src/img/assistant.png","sight");
+		scope.setImage(5,6, "src/img/p-dirt-n.png","sight");
+	}, 1000);
+	setTimeout(function(){
+		scope.setImage(4,4, "src/img/habitat-a1.png","sight");
+		scope.setImage(5,6, "src/img/habitat-b3.png","sight");
+		scope.setImage(4,5, "src/img/p-dirt-s.png","sight");
+		scope.setImage(6,4, "src/img/assistant.png","sight");
+	}, 2000);
+	setTimeout(function(){
+		scope.setImage(4,5, "src/img/habitat-a2.png","sight");
+		scope.setImage(6,4, "src/img/habitat-c1.png","sight");
+		scope.setImage(5,4, "src/img/p-dirt-w.png","sight");
+		scope.setImage(6,5, "src/img/assistant.png","sight");
+	}, 3000);
+	setTimeout(function(){
+		scope.setImage(5,4, "src/img/habitat-b1.png","sight");
+		scope.setImage(6,5, "src/img/habitat-c2.png","sight");
+		scope.setImage(4,6, "src/img/assistant.png","sight");
+		scope.setImage(6,6, "src/img/p-dirt-w.png","sight");
+	}, 4000);
+	setTimeout(function(){
+		scope.setImage(4,6, "src/img/habitat-a3.png","sight");
+		scope.setImage(6,6, "src/img/habitat-c3.png","sight");
+	}, 5000);
+	setTimeout(function(){
+		scope.setImage(5,5, "src/img/habitat-b2.png","sight");
+		newLog("flatland4","b",2000);
+	}, 6000);
+	setTimeout(function(){
+		map.setImage(45,46 ,"src/img/habitat-a1.png","habitat");
+		map.setImage(46,46 ,"src/img/habitat-b1.png","habitat");
+		map.setImage(47,46 ,"src/img/habitat-c1.png","habitat");
+
+		map.setImage(45,47 ,"src/img/habitat-a2.png","habitat");
+		map.setImage(46,47 ,"src/img/habitat-b2.png","habitat");
+		map.setImage(47,47 ,"src/img/habitat-c2.png","habitat");
+
+		map.setImage(45,48 ,"src/img/habitat-a3.png","habitat");
+		map.setImage(46,48 ,"src/img/habitat-b3.png","habitat");
+		map.setImage(47,48 ,"src/img/habitat-c3.png","habitat");
+
+		map.setImage(46,50 ,"src/img/comms-1.png","comms");
+		map.setImage(46,51 ,"src/img/comms-2.png","comms");
+		getScope(pos.x,pos.y);
+		scope.setImage(5,5, "src/img/p-grass-s.png","sight");
+		paused = false;
+		setTimeout(function(){
+			newLog("flatland5","b",3000);
+		},800);
+
+	}, 7000);
+}
+
+function ending1(){
+	paused = true;
+	owBGM.pause();
+	alertBGM.pause();
+	caveBGM.pause();
+
+	newLog("reply1","b",3000);
+	setTimeout(function(){
+		newLog("reply2","b",7000);
+	},4000);
+	setTimeout(function(){
+		newLog("reply3","b",5000);
+	},6000);
+	setTimeout(function(){
+		//preCredits();
+		//ALTp2 
+		continued();
+	},10000);
+}
+
+function preCredits(){ 
+	blankScope();
+	paused = true;
+	newLog("blink","r",0);
+	owBGM.pause();
+	//plog.insertBefore(document.getElementById("blink"), plog.childNodes[0]);
+	document.getElementById("blink").setAttribute("class","post highlightR");
+	setTimeout(function(){
+		document.getElementById("blink").removeAttribute('class');
+		newLog("post","r",0);
+		//plog.insertBefore(document.getElementById("post"), plog.childNodes[0]);
+		document.getElementById("post").setAttribute("class","post highlightR");
+	},3000);
+
+	setTimeout(function(){
+		alertBGM.pause();
+		alertBGM.currentTime = 0;
+		alertBGM.play();
+	},4000);
+	setTimeout(function(){
+		alertBGM.pause();
+	},11750);
+	setTimeout(function(){
+		creditsBGM.pause();
+		creditsBGM.currentTime = 0;
+		creditsBGM.play();
+	},11100);
+	setTimeout(function(){
+		hide("game_view");
+		show("creditspage");
+	},12040);
+}
+
+function credits() {
+	if (credits2 == true){
+		setTimeout(function(){
+			player.playVideo();
+		},200);
+		setTimeout(function(){
+			hide("intro");
+			hide("homepage");
+			hide("game_view");
+			show("creditspage");
+			show("credits2");
+		},2000);
+	}
+	else {
+		setTimeout(function(){
+			creditsBGM.pause();
+			creditsBGM.currentTime = 0;
+			creditsBGM.play();
+		},100);
+		setTimeout(function(){
+			hide("intro");
+			hide("homepage");
+			hide("game_view");
+			show("creditspage");
+			show("credits2");
+		},1040);
+	}
+}
+
+function circularScope(){
+	scope.setImage2(1,1 , "src/img/dark.png", "out", "display:none");
+	scope.setImage2(1,9 , "src/img/dark.png", "out", "display:none");
+	scope.setImage2(9,1 , "src/img/dark.png", "out", "display:none");
+	scope.setImage2(9,9 , "src/img/dark.png", "out", "display:none");
+}
+function blankScope(){ //set scope blank/dark
+	scope.setImages(1,9,1,9,"src/img/dark.png","sight");
+	//scope.setImages(2,8,1,9,"src/img/dark.png","sight");
+	//scope.setImages(1,1,2,8,"src/img/dark.png","sight");
+	//scope.setImages(9,9,2,8,"src/img/dark.png","sight");
+}
+function getScope(x,y){ //get new scope according to x y position and current_location
+	if (current_location == "ow"){
+		//simplified code due to design cuts
+		for (var h = 1; h <= 9; h++){
+			for (var w = 1; w <= 9; w++){
+				if ( ((h == 5) && (w == 5)) || ((h == 1) && (w == 1)) || ((h == 1) && (w == 9)) || ((h == 9) && (w == 1)) || ((h == 9) && (w == 9)) ){}
+				else {
+					scope.setImage(w,h, map.getImage(x-5+w,y-5+h),"sight");
+				}
+			}
+		}
+	}
+	else if (current_location == "cave"){ //could use loop 3 to 7
+		for (var h = 3; h <= 7; h++){
+			for (var w = 3; w <= 7; w++){
+				if ( ((h == 5) && (w == 5)) || ((h == 3) && (w == 3)) || ((h == 3) && (w == 7)) || ((h == 7) && (w == 3)) || ((h == 7) && (w == 7)) ){}
+				else {
+					scope.setImage(w,h, cave.getImage(x-5+w,y-5+h),"sight");
+				}
+			}
+		}
+	}
+	else if (current_location == "uwcave"){ //shortcut due to design simplification
+		for (var h = 2; h <= 8; h++){
+			for (var w = 2; w <= 8; w++){
+				if ( ((h == 5) && (w == 5)) || ((h == 2) && (w == 2)) || ((h == 2) && (w == 8)) || ((h == 8) && (w == 2)) || ((h == 8) && (w == 8)) ){}
+				else {
+					scope.setImage(w,h, uwcave.getImage(x-5+w,y-5+h),"sight");
+				}
+			}
+		}
+	}
+}
+
+
+
+function startGame() {
+	current_location = "ow";
+	standing_on = "sand";
+	pos.x= 28;
+	pos.y= 70;
+
+	document.getElementById("player_logs").appendChild( document.getElementById("initial_logs") );
+
+	setTimeout(function(){ //time event1
+		if (end1 != true){ newLog("time_event1","b",6000); }
+	},300000);
+	setTimeout(function(){ //time event2
+		if (end1 != true){ newLog("time_event2","b",12000); }
+	},600000);
+
+
+	//DEV note - we could cascade the events, but it looks worse
+	setTimeout(function(){
+		newLog("init_dialogue1","b",3000);
+	},3000);
+	setTimeout(function(){
+		newLog("init_dialogue2","b",5000);
+	},5000);
+	setTimeout(function(){
+		scope.setImage(5,5,"src/img/p-sand-s.png","sight");
+		getScope(pos.x,pos.y);
+		owBGM.play();
+	},6000);
+	setTimeout(function(){
+		newLog("init_dialogue3","b",5000);
+	},10000);
+	setTimeout(function(){
+		newLog("init_dialogue4","b",6000);
+	},15000);
+	setTimeout(function(){
+		paused = false;
+		setStatus("___ Tap WASD to move ___");
+		newLog("init_dialogue5","b",8000);
+	},20000);
+}
+
+
+
+function setPart2(){ // set the part 2 elements on the overworld
+	//set part1 elements completed
+	obj1 = true;
+	obj2 = true;
+	obj3 = true;
+	upgraded = true;
+	obj0L = true;
+	obj0R = true;
+	end1 = false;
+	diag_rock = false; 
+	diag_ore = false; 
+	beacon = beacons["flatland"].pos;
+	addSignal("uwcave");
+
+	//set part1 elements
+	map.setImage(26,72 ,"src/img/lifepod-a2.png","wall");
+	map.setImage(26,73 ,"src/img/lifepod-a3.png","wall");
+	map.setImage(29,72 ,"src/img/lifepod-d2.png","wall");
+	map.setImage(29,73 ,"src/img/lifepod-d3.png","wall");
+	map.setImage(45,46 ,"src/img/habitat-a1.png","habitat");
+	map.setImage(46,46 ,"src/img/habitat-b1.png","habitat");
+	map.setImage(47,46 ,"src/img/habitat-c1.png","habitat");
+	map.setImage(45,47 ,"src/img/habitat-a2.png","habitat");
+	map.setImage(46,47 ,"src/img/habitat-b2.png","habitat");
+	map.setImage(47,47 ,"src/img/habitat-c2.png","habitat");
+	map.setImage(45,48 ,"src/img/habitat-a3.png","habitat");
+	map.setImage(46,48 ,"src/img/habitat-b3.png","habitat");
+	map.setImage(47,48 ,"src/img/habitat-c3.png","habitat");
+	map.setImage(46,50 ,"src/img/comms-1.png","comms");
+	map.setImage(46,51 ,"src/img/comms-2.png","comms");
+	map.setImage(94,6 ,"src/img/grass.png","grass");
+	map.setImage(86,76 ,"src/img/water.png","water");
+
+	//shipwreck
+	map.setImage(52,90 ,"src/img/sunken-a1.png","water");
+	map.setImage(53,90 ,"src/img/sunken-b1.png","water");
+	map.setImage(54,90 ,"src/img/sunken-c1.png","water");
+	map.setImage(55,90 ,"src/img/sunken-d1.png","water");
+	map.setImage(56,90 ,"src/img/sunken-e1.png","water");
+	map.setImage(52,91 ,"src/img/sunken-a2.png","water");
+	map.setImage(53,91 ,"src/img/sunken-b2.png","water");
+	map.setImage(54,91 ,"src/img/sunken-c2.png","water");
+	map.setImage(55,91 ,"src/img/sunken-d2.png","water");
+	map.setImage(56,91 ,"src/img/sunken-e2.png","water");
+	map.setImage(52,92 ,"src/img/sunken-a3.png","water");
+	map.setImage(53,92 ,"src/img/sunken-b3.png","water");
+	map.setImage(54,92 ,"src/img/sunken-c3.png","water");
+	map.setImage(55,92 ,"src/img/sunken-d3.png","water");
+	map.setImage(56,92 ,"src/img/sunken-e3.png","water");
+	map.setImage(52,93 ,"src/img/sunken-a4.png","water");
+	map.setImage(53,93 ,"src/img/sunken-b4.png","water");
+	map.setImage(54,93 ,"src/img/sunken-c4.png","water");
+	map.setImage(55,93 ,"src/img/sunken-d4.png","water");
+	map.setImage(56,93 ,"src/img/sunken-e4.png","water");
+
+	//alien threat
+	map.setImages(37,40, 21,21 ,"src/img/grass.png","retreat");
+	map.setImages(38,39, 16,16 ,"src/img/grass.png","destroy");
+
+
+}
+
+function makeUnderwatercave(){
+	//entrance
+	uwcave.setImages(92,94, 53,55 ,"src/img/water.png","water");
+
+	//reaper territory
+	uwcave.setImages(70,97, 4,30 ,"src/img/underwater.png","warning");
+	uwcave.setImages(76,92, 8,24 ,"src/img/underwater.png","danger");
+	uwcave.setImages(84,89, 11,16 ,"src/img/underwater.png","reaper");
+
+	uwcave.setImages(44,65, 37,57 ,"src/img/underwater.png","warning");
+	uwcave.setImages(50,63, 42,55 ,"src/img/underwater.png","danger");
+	uwcave.setImages(55,61, 47,53 ,"src/img/underwater.png","reaper");
+
+	//dead zone
+	uwcave.setImages(4,26, 39,57 ,"src/img/underwater.png","deadzone");
+
+	//depth zones
+	uwcave.setImages(72,96, 43,43 ,"src/img/underwater.png","depth1");
+	uwcave.setImages(58,58, 8,10 ,"src/img/underwater.png","depth2");
+	uwcave.setImages(24,26, 10,10 ,"src/img/underwater.png","depth3");
+	uwcave.setImages(41,44, 34,34 ,"src/img/underwater.png","depth3");
+	uwcave.setImages(4,29, 22,22 ,"src/img/underwater.png","depth4");
+	uwcave.setImages(39,39, 44,56 ,"src/img/underwater.png","depth4");
+
+	//walls
+	//	uwcave.setImages(,, ,, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(1,100, 1,3, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(1,100, 58,60, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(1,3, 1,60, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(98,100, 1,60, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(7,10, 7,9, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(7,9, 12,20, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(7,25, 21,23, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(4,16, 27,29, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(21,32, 27,29, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(14,16, 9,17, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(21,23, 4,9, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(21,23, 13,17, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(24,26, 15,17, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(27,36, 7,11, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(30,32, 16,22, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(33,37, 12,29, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(38,51, 25,30, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(44,46, 8,21, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(40,65, 3,7, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(38,40, 31,43, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(41,44, 40,42, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(31,37, 36,43, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(32,34, 33,35, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(27,30, 40,42, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(24,26, 34,36, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(7,19, 35,38, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(31,40, 57,57, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(45,55, 34,36, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(48,53, 41,45, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(49,51, 51,53, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(52,53, 51,51, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(60,62, 40,41, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(55,60, 24,35, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(55,58, 11,23, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(59,64, 11,17, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(64,64, 24,35, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(65,65, 11,35, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(66,66, 11,57, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(67,67, 12,57, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(68,68, 14,57, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(69,70, 36,57, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(71,71, 42,57, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(72,72, 49,57, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(73,73, 52,57, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(74,76, 54,57, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(77,81, 55,57, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(82,82, 56,57, "src/img/underwater_wall.png","wall");
+	uwcave.setImage(83,57, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(78,90, 39,46, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(91,92, 41,44, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(77,78, 40,47, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(79,86, 47,48, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(66,66, 5,6, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(66,67, 4,4, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(73,77, 23,26, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(78,80, 13,15, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(89,90, 22,23, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(91,91, 9,12, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(97,97, 38,57, "src/img/underwater_wall.png","wall");
+	uwcave.setImages(94,96, 57,57, "src/img/underwater_wall.png","wall");
+
+	//easteregg (deprec)
+	/*uwcave.setImage(61,20, "src/img/.png","wall");
+	uwcave.setImage(62,20, "src/img/.png","wall");
+	uwcave.setImage(61,21, "src/img/.png","wall");
+	uwcave.setImage(62,21, "src/img/.png","wall");*/
+}
+
+function makeOverworld() { 
+	//crashzone
+	map.setImages(89,100,  1,13 ,"src/img/grass.png","crashzone");
+	
+	//waters
+	map.setImages(1,100,  74,100 ,"src/img/water.png","deepwater");
+	map.setImages(6,95,  68,95 ,"src/img/water.png","water");
+
+	//sands
+	map.setImages(11,76,  64,67 ,"src/img/wetsand.png","sand");
+	map.setImages(25,25,  73,76 ,"src/img/wetsand.png","sand");
+	map.setImages(30,30,  73,76 ,"src/img/wetsand.png","sand");
+	map.setImages(18,23,  68,78 ,"src/img/wetsand.png","sand");
+	map.setImages(20,22,  79,79 ,"src/img/wetsand.png","sand");
+	map.setImages(17,17,  68,75 ,"src/img/wetsand.png","sand");
+	map.setImages(16,16,  68,74 ,"src/img/wetsand.png","sand");
+	map.setImages(15,15,  68,70 ,"src/img/wetsand.png","sand");
+	map.setImages(24,24,  68,70 ,"src/img/wetsand.png","sand");
+	map.setImages(25,47,  68,68 ,"src/img/wetsand.png","sand");
+	map.setImages(25,43,  69,69 ,"src/img/wetsand.png","sand");
+	map.setImages(25,42,  70,70 ,"src/img/wetsand.png","sand");
+	map.setImages(31,41,  71,71 ,"src/img/wetsand.png","sand");
+	map.setImages(32,38,  72,72 ,"src/img/wetsand.png","sand");
+	map.setImages(32,37,  73,73 ,"src/img/wetsand.png","sand");
+	map.setImages(32,36,  74,76 ,"src/img/wetsand.png","sand");
+	map.setImages(32,35,  77,77 ,"src/img/wetsand.png","sand");
+	map.setImages(33,34,  78,78 ,"src/img/wetsand.png","sand");
+	map.setImages(11,76,  57,63 ,"src/img/sand.png","sand");
+	map.setImages(25,25,  71,72 ,"src/img/sand.png","sand");
+	map.setImages(30,30,  71,72 ,"src/img/sand.png","sand");
+	map.setImages(26,29,  70,71 ,"src/img/sand.png","sand");
+	map.setImages(75,76,  57,57 ,"src/img/grass.png","grass");
+	map.setImage(76,58 ,"src/img/grass.png","grass");
+
+	map.setImage(26,72 ,"src/img/wetsand.png","sand");
+	map.setImage(29,72 ,"src/img/wetsand.png","sand");
+
+	
+
+	//mountains
+	map.setImages(1,10,  1,56 ,"src/img/wall-grass.png","wall");
+	map.setImages(1,10,  57,67 ,"src/img/wall-sand.png","wall");
+	map.setImages(1,10,  68,73 ,"src/img/wall-water.png","wall");
+	map.setImage(10,73 ,"src/img/water.png","water");
+	map.setImages(10,97,  1,4 ,"src/img/wall-grass.png","wall");
+	map.setImages(11,11,  33,56 ,"src/img/wall-grass.png","wall");
+	map.setImages(12,12,  35,52 ,"src/img/wall-grass.png","wall");
+	map.setImages(13,13,  36,49 ,"src/img/wall-grass.png","wall");
+
+	map.setImages(11,35,  6,20 ,"src/img/wall-grass.png","wall");
+	map.setImages(11,11,  21,27 ,"src/img/wall-grass.png","wall");
+	map.setImages(12,12,  21,25 ,"src/img/wall-grass.png","wall");
+	map.setImages(13,17,  24,24 ,"src/img/wall-grass.png","wall");
+	map.setImages(13,25,  23,23 ,"src/img/wall-grass.png","wall");
+	map.setImages(13,30,  22,22 ,"src/img/wall-grass.png","wall");
+	map.setImages(13,31,  21,21 ,"src/img/wall-grass.png","wall");
+	map.setImages(36,36,  13,20 ,"src/img/wall-grass.png","wall");
+	map.setImages(37,37,  14,19 ,"src/img/wall-grass.png","wall");
+	map.setImages(40,40,  14,19 ,"src/img/wall-grass.png","wall");
+	map.setImages(41,41,  13,20 ,"src/img/wall-grass.png","wall");
+	map.setImages(42,44,  10,20 ,"src/img/wall-grass.png","wall");
+	map.setImages(45,45,  10,19 ,"src/img/wall-grass.png","wall");
+	map.setImages(36,36,  6,9 ,"src/img/wall-grass.png","wall");
+	map.setImages(11,89,  5,5 ,"src/img/wall-grass.png","wall");
+	map.setImages(37,48,  6,6 ,"src/img/wall-grass.png","wall");
+	map.setImages(37,47,  7,7 ,"src/img/wall-grass.png","wall");
+	map.setImages(37,46,  8,8 ,"src/img/wall-grass.png","wall");
+	map.setImages(41,45,  9,9 ,"src/img/wall-grass.png","wall");
+	map.setImages(63,88,  6,6 ,"src/img/wall-grass.png","wall");
+	map.setImages(64,87,  7,7 ,"src/img/wall-grass.png","wall");
+	map.setImages(65,86,  8,8 ,"src/img/wall-grass.png","wall");
+	map.setImages(66,85,  9,9 ,"src/img/wall-grass.png","wall");
+	map.setImages(67,84,  10,10 ,"src/img/wall-grass.png","wall");
+	map.setImages(68,83,  11,11 ,"src/img/wall-grass.png","wall");
+	map.setImages(69,82,  12,12 ,"src/img/wall-grass.png","wall");
+	map.setImages(70,81,  13,13 ,"src/img/wall-grass.png","wall");
+	map.setImages(71,80,  14,14 ,"src/img/wall-grass.png","wall");
+
+	map.setImages(77,100,  61,69 ,"src/img/wall-sand.png","wall");
+	map.setImages(77,77,  60,61 ,"src/img/sand.png","sand");
+	map.setImages(77,100,  70,73 ,"src/img/wall-water.png","wall");
+	map.setImages(77,83,  74,82 ,"src/img/wall-water.png","wall");
+	map.setImages(89,100,  74,74 ,"src/img/wall-water.png","wall");
+	map.setImages(90,100,  75,75 ,"src/img/wall-water.png","wall");
+	map.setImages(91,100,  76,76 ,"src/img/wall-water.png","wall");
+	map.setImages(92,100,  77,77 ,"src/img/wall-water.png","wall");
+	map.setImages(93,100,  78,78 ,"src/img/wall-water.png","wall");
+	map.setImages(94,100,  79,79 ,"src/img/wall-water.png","wall");
+	map.setImage(77,82 ,"src/img/water.png","water");
+	map.setImage(83,82 ,"src/img/water.png","water");
+
+	map.setImages(58,60,  12,17 ,"src/img/wall-grass.png","wall");
+	map.setImages(57,57,  13,16 ,"src/img/wall-grass.png","wall");
+	map.setImages(59,60,  18,18 ,"src/img/wall-grass.png","wall");
+	map.setImages(61,61,  13,17 ,"src/img/wall-grass.png","wall");
+	map.setImages(62,62,  14,16 ,"src/img/wall-grass.png","wall");
+
+	//crevice
+	map.setImages(97,100,  4,60 ,"src/img/dark.png","crevice");
+	map.setImages(96,96,  5,22 ,"src/img/dark.png","crevice");
+	map.setImages(95,95,  7,21 ,"src/img/dark.png","crevice");
+	map.setImages(94,94,  13,18 ,"src/img/dark.png","crevice");
+	map.setImage(94,11 ,"src/img/dark.png","crevice");
+	map.setImages(96,96,  26,27 ,"src/img/dark.png","crevice");
+	map.setImage(95,27 ,"src/img/dark.png","crevice");
+	map.setImages(96,96,  32,37 ,"src/img/dark.png","crevice");
+	map.setImages(92,95,  32,32 ,"src/img/dark.png","crevice");
+	map.setImages(93,94,  33,33 ,"src/img/dark.png","crevice");
+	map.setImage(95,30 ,"src/img/dark.png","crevice");
+	map.setImage(94,31 ,"src/img/dark.png","crevice");
+	map.setImage(95,36 ,"src/img/dark.png","crevice");
+	map.setImage(94,37 ,"src/img/dark.png","crevice");
+	map.setImages(96,96,  39,45 ,"src/img/dark.png","crevice");
+	map.setImages(95,95,  39,43 ,"src/img/dark.png","crevice");
+	map.setImage(94,41 ,"src/img/dark.png","crevice");
+	map.setImages(96,96,  49,60 ,"src/img/dark.png","crevice");
+	map.setImages(95,95,  52,60 ,"src/img/dark.png","crevice");
+	map.setImages(94,94,  56,60 ,"src/img/dark.png","crevice");
+	map.setImages(93,93,  58,60 ,"src/img/dark.png","crevice");
+	map.setImages(89,92,  59,60 ,"src/img/dark.png","crevice");
+	map.setImage(90,58 ,"src/img/dark.png","crevice");
+
+	//sinkhole
+	map.setImages(38,38,  30,39 ,"src/img/dark.png","sinkhole");
+	map.setImages(39,39,  30,40 ,"src/img/dark.png","sinkhole");
+	map.setImages(40,40,  29,40 ,"src/img/dark.png","sinkhole");
+	map.setImages(41,41,  28,40 ,"src/img/dark.png","sinkhole");
+	map.setImages(42,53,  27,41 ,"src/img/dark.png","sinkhole");
+	map.setImages(54,54,  29,40 ,"src/img/dark.png","sinkhole");
+	map.setImages(55,55,  31,40 ,"src/img/dark.png","sinkhole");
+	map.setImages(56,56,  34,36 ,"src/img/dark.png","sinkhole");
+	map.setImage(51,42 ,"src/img/dark.png","sinkhole");
+
+	//flatland
+	map.setImage(45,46 ,"src/img/dirt-nw.png","flatland");
+	map.setImage(46,46 ,"src/img/dirt-n.png","flatland");
+	map.setImage(47,46 ,"src/img/dirt-ne.png","flatland");
+
+	map.setImage(45,47 ,"src/img/dirt-w.png","flatland");
+	map.setImage(46,47 ,"src/img/dirt.png","flatland");
+	map.setImage(47,47 ,"src/img/dirt-e.png","flatland");
+
+	map.setImage(45,48 ,"src/img/dirt-sw.png","flatland");
+	map.setImage(46,48 ,"src/img/dirt-s.png","flatland");
+	map.setImage(47,48 ,"src/img/dirt-se.png","flatland");
+
+
+	//cave
+	map.setImages(37,40,  5,8 ,"src/img/cave_fill.png","wall");
+	map.setImage(38,8 ,"src/img/cave-a.png","cave");
+	map.setImage(39,8 ,"src/img/cave-b.png","cave");
+	
+	//lifepod
+	map.setImage(26,72 ,"src/img/lifepod-a2.png","lifepodL");
+	map.setImage(26,73 ,"src/img/lifepod-a3.png","lifepodL");
+	map.setImage(29,72 ,"src/img/lifepod-d2.png","lifepodR");
+	map.setImage(29,73 ,"src/img/lifepod-d3.png","lifepodR");
+	map.setImage(27,71 ,"src/img/lifepod-b1.png","wall");
+	map.setImage(28,71 ,"src/img/lifepod-c1.png","wall");
+	map.setImage(27,72 ,"src/img/lifepod-b2.png","wall");
+	map.setImage(28,72 ,"src/img/lifepod-c2.png","wall");
+	map.setImage(27,73 ,"src/img/lifepod-b3.png","wall");
+	map.setImage(28,73 ,"src/img/lifepod-c3.png","wall");
+	map.setImage(27,74 ,"src/img/lifepod-b4.png","wall");
+	map.setImage(28,74 ,"src/img/lifepod-c4.png","wall");
+
+
+
+	//tablet /debris /module
+	map.setImage(86,76 ,"src/img/tablet.png","tablet");
+	map.setImage(94,6 ,"src/img/module.png","module");
+	map.setImages(98,100,  1,3 ,"src/img/debris.png","debris");
+	map.setImages(92,92,  7,8 ,"src/img/debris.png","debris");
+	map.setImage(93,9 ,"src/img/debris.png","debris");
+	map.setImage(97,4 ,"src/img/debris.png","debris");
+
+	//leviathan
+	map.setImage(20,31 ,"src/img/skeleton-b1.png","leviathan");
+	map.setImage(19,32 ,"src/img/skeleton-a2.png","leviathan");
+	map.setImage(20,32 ,"src/img/skeleton-b2.png","leviathan");
+	map.setImage(21,32 ,"src/img/skeleton-c2.png","leviathan");
+	map.setImages(19,19,  33,53 ,"src/img/skeleton-a3.png","leviathan");
+	map.setImages(20,20,  33,53 ,"src/img/skeleton-b3.png","leviathan");
+	map.setImages(21,21,  33,53 ,"src/img/skeleton-c3.png","leviathan");
+	map.setImage(19,54 ,"src/img/skeleton-a4.png","leviathan");
+	map.setImage(20,54 ,"src/img/skeleton-b4.png","leviathan");
+	map.setImage(21,54 ,"src/img/skeleton-c4.png","leviathan");
+
+	map.setImage(12,30 ,"src/img/skull-a5.png","leviathan");
+	map.setImage(13,30 ,"src/img/skull-b5.png","leviathan");
+	map.setImage(14,30 ,"src/img/skull-c5.png","leviathan");
+	map.setImage(15,30 ,"src/img/skull-d5.png","leviathan");
+	map.setImage(16,30 ,"src/img/skull-e5.png","leviathan");
+	map.setImage(17,30 ,"src/img/skull-f5.png","leviathan");
+	map.setImage(18,30 ,"src/img/skull-g5.png","leviathan");
+	map.setImage(19,30 ,"src/img/skull-h5.png","leviathan");
+	map.setImage(20,30 ,"src/img/skull-i5.png","leviathan");
+	map.setImage(21,30 ,"src/img/skull-j5.png","leviathan");
+	map.setImage(22,30 ,"src/img/skull-k5.png","leviathan");
+	map.setImage(23,30 ,"src/img/skull-l5.png","leviathan");
+	map.setImage(24,30 ,"src/img/skull-m5.png","leviathan");
+	map.setImage(25,30 ,"src/img/skull-n5.png","leviathan");
+	map.setImage(26,30 ,"src/img/skull-o5.png","leviathan");
+	map.setImage(27,30 ,"src/img/skull-p5.png","leviathan");
+	map.setImage(28,30 ,"src/img/skull-q5.png","leviathan");
+
+	map.setImage(12,29 ,"src/img/skull-a4.png","leviathan");
+	map.setImage(13,29 ,"src/img/skull-b4.png","leviathan");
+	map.setImage(14,29 ,"src/img/skull-c4.png","leviathan");
+	map.setImage(15,29 ,"src/img/skull-d4.png","leviathan");
+	map.setImage(16,29 ,"src/img/skull-e4.png","leviathan");
+	map.setImage(17,29 ,"src/img/skull-f4.png","leviathan");
+	map.setImage(18,29 ,"src/img/skull-g4.png","leviathan");
+	map.setImage(19,29 ,"src/img/skull-h4.png","leviathan");
+	map.setImage(20,29 ,"src/img/skull-i4.png","leviathan");
+	map.setImage(21,29 ,"src/img/skull-j4.png","leviathan");
+	map.setImage(22,29 ,"src/img/skull-k4.png","leviathan");
+	map.setImage(23,29 ,"src/img/skull-l4.png","leviathan");
+	map.setImage(24,29 ,"src/img/skull-m4.png","leviathan");
+	map.setImage(25,29 ,"src/img/skull-n4.png","leviathan");
+	map.setImage(26,29 ,"src/img/skull-o4.png","leviathan");
+	map.setImage(27,29 ,"src/img/skull-p4.png","leviathan");
+	map.setImage(28,29 ,"src/img/skull-q4.png","leviathan");
+
+	map.setImage(17,28 ,"src/img/skull-f3.png","leviathan");
+	map.setImage(18,28 ,"src/img/skull-g3.png","leviathan");
+	map.setImage(19,28 ,"src/img/skull-h3.png","leviathan");
+	map.setImage(20,28 ,"src/img/skull-i3.png","leviathan");
+	map.setImage(21,28 ,"src/img/skull-j3.png","leviathan");
+	map.setImage(22,28 ,"src/img/skull-k3.png","leviathan");
+	map.setImage(23,28 ,"src/img/skull-l3.png","leviathan");
+
+	map.setImage(18,27 ,"src/img/skull-g2.png","leviathan");
+	map.setImage(19,27 ,"src/img/skull-h2.png","leviathan");
+	map.setImage(20,27 ,"src/img/skull-i2.png","leviathan");
+	map.setImage(21,27 ,"src/img/skull-j2.png","leviathan");
+	map.setImage(22,27 ,"src/img/skull-k2.png","leviathan");
+
+	map.setImage(18,26 ,"src/img/skull-g1.png","leviathan");
+	map.setImage(19,26 ,"src/img/skull-h1.png","leviathan");
+	map.setImage(20,26 ,"src/img/skull-i1.png","leviathan");
+	map.setImage(21,26 ,"src/img/skull-j1.png","leviathan");
+	map.setImage(22,26 ,"src/img/skull-k1.png","leviathan");
+
+
+	//oddtree
+	map.setImage(80,30 ,"src/img/oddtree-a1.png","oddtree");
+	map.setImage(81,30 ,"src/img/oddtree-b1.png","oddtree");
+	map.setImage(80,31 ,"src/img/oddtree-a2.png","oddtree");
+	map.setImage(81,31 ,"src/img/oddtree-b2.png","oddtree");
+	map.setImage(80,32 ,"src/img/oddtree-a3.png","oddtree");
+	map.setImage(81,32 ,"src/img/oddtree-b3.png","oddtree");
+
+
+	//flora
+	map.setImage(79,31 ,"src/img/flowers.png","grass");
+	map.setImage(78,32 ,"src/img/flowers.png","grass");
+	map.setImage(80,34 ,"src/img/flowers.png","grass");
+	map.setImage(82,35 ,"src/img/flowers.png","grass");
+	map.setImage(83,32 ,"src/img/flowers.png","grass");
+	map.setImage(78,36 ,"src/img/flowers.png","grass");
+
+
+	map.setImage(73,22 ,"src/img/shrub.png","flora");
+	map.setImage(74,23 ,"src/img/small-tree1.png","flora");
+	map.setImage(81,24 ,"src/img/plant.png","flora");
+	map.setImage(80,27 ,"src/img/shrub.png","flora");
+	map.setImage(81,27 ,"src/img/small-tree2.png","flora");
+	map.setImage(73,28 ,"src/img/small-tree2.png","flora");
+	map.setImage(74,28 ,"src/img/shrub.png","flora");
+	map.setImage(79,28 ,"src/img/small-tree1.png","flora");
+	map.setImage(78,29 ,"src/img/small-tree2.png","flora");
+	map.setImage(68,30 ,"src/img/small-tree1.png","flora");
+	map.setImage(84,32 ,"src/img/shrub.png","flora");
+	map.setImage(70,33 ,"src/img/small-tree1.png","flora");
+	map.setImage(75,34 ,"src/img/small-tree2.png","flora");
+	map.setImage(78,34 ,"src/img/plant.png","flora");
+	map.setImage(75,35 ,"src/img/small-tree1.png","flora");
+	map.setImage(83,35 ,"src/img/small-tree1.png","flora");
+	map.setImage(80,36 ,"src/img/shrub.png","flora");
+	map.setImage(82,36 ,"src/img/small-tree2.png","flora");
+	map.setImage(83,37 ,"src/img/plant.png","flora");
+	map.setImage(84,37 ,"src/img/small-tree1.png","flora");
+	map.setImage(76,38 ,"src/img/small-tree1.png","flora");
+	map.setImage(77,38 ,"src/img/shrub.png","flora");
+	map.setImage(84,38 ,"src/img/small-tree1.png","flora");
+	map.setImage(72,41 ,"src/img/small-tree2.png","flora");
+
+	map.setImage(69,21 ,"src/img/tree2-a1.png","flora");
+	map.setImage(70,21 ,"src/img/tree2-b1.png","flora");
+	map.setImage(69,22 ,"src/img/tree2-a2.png","flora");
+	map.setImage(70,22 ,"src/img/tree2-b2.png","flora");
+
+	map.setImage(77,22 ,"src/img/tree1-a1.png","flora");
+	map.setImage(78,22 ,"src/img/tree1-b1.png","flora");
+	map.setImage(77,23 ,"src/img/tree1-a2.png","flora");
+	map.setImage(78,23 ,"src/img/tree1-b2.png","flora");
+
+	map.setImage(82,22 ,"src/img/tree3-a1.png","flora");
+	map.setImage(83,22 ,"src/img/tree3-b1.png","flora");
+	map.setImage(82,23 ,"src/img/tree3-a2.png","flora");
+	map.setImage(83,23 ,"src/img/tree3-b2.png","flora");
+
+	map.setImage(85,25 ,"src/img/tree1-a1.png","flora");
+	map.setImage(86,25 ,"src/img/tree1-b1.png","flora");
+	map.setImage(85,26 ,"src/img/tree1-a2.png","flora");
+	map.setImage(86,26 ,"src/img/tree1-b2.png","flora");
+
+	map.setImage(69,26 ,"src/img/tree1-a1.png","flora");
+	map.setImage(70,26 ,"src/img/tree1-b1.png","flora");
+	map.setImage(69,27 ,"src/img/tree1-a2.png","flora");
+	map.setImage(70,27 ,"src/img/tree1-b2.png","flora");
+
+	map.setImage(75,26 ,"src/img/tree3-a1.png","flora");
+	map.setImage(76,26 ,"src/img/tree3-b1.png","flora");
+	map.setImage(75,27 ,"src/img/tree3-a2.png","flora");
+	map.setImage(76,27 ,"src/img/tree3-b2.png","flora");
+
+	map.setImage(85,28 ,"src/img/tree2-a1.png","flora");
+	map.setImage(86,28 ,"src/img/tree2-b1.png","flora");
+	map.setImage(85,29 ,"src/img/tree2-a2.png","flora");
+	map.setImage(86,29 ,"src/img/tree2-b2.png","flora");
+
+	map.setImage(71,29 ,"src/img/tree2-a1.png","flora");
+	map.setImage(72,29 ,"src/img/tree2-b1.png","flora");
+	map.setImage(71,30 ,"src/img/tree2-a2.png","flora");
+	map.setImage(72,30 ,"src/img/tree2-b2.png","flora");
+
+	map.setImage(75, 31,"src/img/tree2-a1.png","flora");
+	map.setImage(76,31 ,"src/img/tree2-b1.png","flora");
+	map.setImage(75,32 ,"src/img/tree2-a2.png","flora");
+	map.setImage(76,32 ,"src/img/tree2-b2.png","flora");
+
+	map.setImage(87,31 ,"src/img/tree1-a1.png","flora");
+	map.setImage(88,31 ,"src/img/tree1-b1.png","flora");
+	map.setImage(87,32 ,"src/img/tree1-a2.png","flora");
+	map.setImage(88,32 ,"src/img/tree1-b2.png","flora");
+
+	map.setImage(71,34 ,"src/img/tree3-a1.png","flora");
+	map.setImage(72,34 ,"src/img/tree3-b1.png","flora");
+	map.setImage(71,35 ,"src/img/tree3-a2.png","flora");
+	map.setImage(72,35 ,"src/img/tree3-b2.png","flora");
+
+	map.setImage(86, 35,"src/img/tree2-a1.png","flora");
+	map.setImage(87,35 ,"src/img/tree2-b1.png","flora");
+	map.setImage(86,36 ,"src/img/tree2-a2.png","flora");
+	map.setImage(87,36 ,"src/img/tree2-b2.png","flora");
+
+	map.setImage(68,36 ,"src/img/tree3-a1.png","flora");
+	map.setImage(69,36 ,"src/img/tree3-b1.png","flora");
+	map.setImage(68,37 ,"src/img/tree3-a2.png","flora");
+	map.setImage(69,37 ,"src/img/tree3-b2.png","flora");
+
+	map.setImage(71,40 ,"src/img/tree1-a1.png","flora");
+	map.setImage(72,40 ,"src/img/tree1-b1.png","flora");
+	map.setImage(71,41 ,"src/img/tree1-a2.png","flora");
+	map.setImage(72,41 ,"src/img/tree1-b2.png","flora");
+
+	map.setImage(74,40 ,"src/img/tree1-a1.png","flora");
+	map.setImage(75,40 ,"src/img/tree1-b1.png","flora");
+	map.setImage(74,41 ,"src/img/tree1-a2.png","flora");
+	map.setImage(75,41 ,"src/img/tree1-b2.png","flora");
+
+	map.setImage(78,40 ,"src/img/tree3-a1.png","flora");
+	map.setImage(79,40 ,"src/img/tree3-b1.png","flora");
+	map.setImage(78,41 ,"src/img/tree3-a2.png","flora");
+	map.setImage(79,41 ,"src/img/tree3-b2.png","flora");
+
+	map.setImage(82,40 ,"src/img/tree3-a1.png","flora");
+	map.setImage(83,40 ,"src/img/tree3-b1.png","flora");
+	map.setImage(82,41 ,"src/img/tree3-a2.png","flora");
+	map.setImage(83,41 ,"src/img/tree3-b2.png","flora");
+
+	map.setImage(87,40 ,"src/img/tree2-a1.png","flora");
+	map.setImage(88,40 ,"src/img/tree2-b1.png","flora");
+	map.setImage(87,41 ,"src/img/tree2-a2.png","flora");
+	map.setImage(88,41 ,"src/img/tree2-b2.png","flora");
+
+
+
+
+	//rock
+	map.setImage(38,22 ,"src/img/pike-a1.png","rock");
+	map.setImage(39,22 ,"src/img/pike-b1.png","rock");
+	map.setImage(38,23 ,"src/img/pike-a2.png","rock");
+	map.setImage(39,23 ,"src/img/pike-b2.png","rock");
+
+	//ore
+	map.setImage(48,12 ,"src/img/largeore.png","ore");
+	map.setImage(48,20,"src/img/ores2.png","ore");
+	map.setImage(49,20,"src/img/ores3.png","ore");
+	map.setImage(49,19,"src/img/ores1.png","ore");
+	map.setImage(50,12,"src/img/ores1.png","ore");
+	map.setImage(50,10,"src/img/largeore.png","ore");
+	map.setImage(51,9,"src/img/ores1.png","ore");
+	map.setImage(51,14 ,"src/img/ores2.png","ore");
+	map.setImage(52,9,"src/img/ores1.png","ore");
+	map.setImage(52,17,"src/img/ores3.png","ore");
+	map.setImage(52,18 ,"src/img/largeore.png","ore");
+	map.setImage(53,18,"src/img/ores3.png","ore");
+	map.setImage(54,11 ,"src/img/ores2.png","ore");
+	map.setImage(56,8,"src/img/largeore.png","ore");
+
+
+	//visual effect
+	map.setImage(68,14 ,"src/img/flowers1.png","grass");
+	map.setImage(69,15 ,"src/img/flowers1.png","grass");
+	map.setImage(68,16 ,"src/img/flowers3.png","grass");
+	map.setImage(68,17 ,"src/img/flowers2.png","grass");
+	map.setImage(68,18 ,"src/img/flowers6.png","grass");
+	map.setImage(66,17 ,"src/img/flowers5.png","grass");
+	map.setImage(73,17 ,"src/img/flowers5.png","grass");
+	map.setImage(73,18 ,"src/img/flowers6.png","grass");
+	map.setImage(74,17 ,"src/img/flowers7.png","grass");
+	map.setImage(74,18 ,"src/img/flowers9.png","grass");
+	map.setImage(75,17 ,"src/img/flowers7.png","grass");
+	map.setImage(75,18 ,"src/img/flowers9.png","grass");
+	map.setImage(76,17 ,"src/img/flowers9.png","grass");
+	map.setImage(77,17 ,"src/img/flowers1.png","grass");
+	map.setImage(78,17 ,"src/img/flowers2.png","grass");
+	map.setImage(85,16 ,"src/img/flowers2.png","grass");
+	map.setImage(92,20 ,"src/img/flowers5.png","grass");
+	map.setImage(90,22 ,"src/img/flowers1.png","grass");
+	map.setImage(90,23 ,"src/img/flowers2.png","grass");
+	map.setImage(55,22 ,"src/img/flowers4.png","grass");
+	map.setImage(52,24 ,"src/img/flowers8.png","grass");
+	map.setImage(54,24 ,"src/img/flowers6.png","grass");
+	map.setImage(56,24 ,"src/img/flowers3.png","grass");
+	map.setImage(62,25 ,"src/img/flowers3.png","grass");
+	map.setImage(63,25 ,"src/img/flowers7.png","grass");
+	map.setImage(64,25 ,"src/img/flowers5.png","grass");
+	map.setImage(62,26 ,"src/img/flowers6.png","grass");
+	map.setImage(63,26 ,"src/img/flowers2.png","grass");
+	map.setImage(64,26 ,"src/img/flowers1.png","grass");
+	map.setImage(62,27 ,"src/img/flowers3.png","grass");
+	map.setImage(63,27 ,"src/img/flowers6.png","grass");
+	map.setImage(64,27 ,"src/img/flowers8.png","grass");
+	map.setImage(31,25 ,"src/img/flowers9.png","grass");
+	map.setImage(32,25 ,"src/img/flowers6.png","grass");
+	map.setImage(31,26 ,"src/img/flowers2.png","grass");
+	map.setImage(32,26 ,"src/img/flowers1.png","grass");
+	map.setImage(32,27 ,"src/img/flowers3.png","grass");
+	map.setImage(36,27 ,"src/img/flowers5.png","grass");
+	map.setImage(35,30 ,"src/img/flowers2.png","grass");
+	map.setImage(35,31 ,"src/img/flowers6.png","grass");
+	map.setImage(35,32 ,"src/img/flowers7.png","grass");
+	map.setImage(34,33 ,"src/img/flowers9.png","grass");
+	map.setImage(60,33 ,"src/img/flowers1.png","grass");
+	map.setImage(60,35 ,"src/img/flowers2.png","grass");
+	map.setImage(60,36 ,"src/img/flowers3.png","grass");
+	map.setImage(59,36 ,"src/img/flowers5.png","grass");
+	map.setImage(30,38 ,"src/img/flowers6.png","grass");
+	map.setImage(30,39 ,"src/img/flowers4.png","grass");
+	map.setImage(31,39 ,"src/img/flowers9.png","grass");
+	map.setImage(29,40 ,"src/img/flowers7.png","grass");
+	map.setImage(28,40 ,"src/img/flowers8.png","grass");
+	map.setImage(63,39 ,"src/img/flowers8.png","grass");
+	map.setImage(48,42 ,"src/img/flowers9.png","grass");
+	map.setImage(48,43 ,"src/img/flowers7.png","grass");
+	map.setImage(33,43 ,"src/img/flowers6.png","grass");
+	map.setImage(34,44 ,"src/img/flowers3.png","grass");
+	map.setImage(35,44 ,"src/img/flowers5.png","grass");
+	map.setImage(35,45 ,"src/img/flowers5.png","grass");
+	map.setImage(42,44 ,"src/img/flowers7.png","grass");
+	map.setImage(43,44 ,"src/img/flowers9.png","grass");
+	map.setImage(53,45 ,"src/img/flowers9.png","grass");
+	map.setImage(54,45 ,"src/img/flowers9.png","grass");
+	map.setImage(55,45 ,"src/img/flowers6.png","grass");
+	map.setImage(56,45 ,"src/img/flowers7.png","grass");
+	map.setImage(58,45 ,"src/img/flowers2.png","grass");
+	map.setImage(58,46 ,"src/img/flowers3.png","grass");
+	map.setImage(58,47 ,"src/img/flowers1.png","grass");
+	map.setImage(58,48 ,"src/img/flowers6.png","grass");
+	map.setImage(57,48 ,"src/img/flowers5.png","grass");
+	map.setImage(56,48 ,"src/img/flowers7.png","grass");
+	map.setImage(56,47 ,"src/img/flowers7.png","grass");
+	map.setImage(55,46 ,"src/img/flowers7.png","grass");
+	map.setImage(54,47 ,"src/img/flowers8.png","grass");
+	map.setImage(53,48 ,"src/img/flowers9.png","grass");
+	map.setImage(67,48 ,"src/img/flowers6.png","grass");
+	map.setImage(67,49 ,"src/img/flowers4.png","grass");
+	map.setImage(67,50 ,"src/img/flowers5.png","grass");
+	map.setImage(67,51 ,"src/img/flowers6.png","grass");
+	map.setImage(67,52 ,"src/img/flowers5.png","grass");
+	map.setImage(67,53 ,"src/img/flowers6.png","grass");
+	map.setImage(66,51 ,"src/img/flowers6.png","grass");
+	map.setImage(65,49 ,"src/img/flowers8.png","grass");
+	map.setImage(65,50 ,"src/img/flowers9.png","grass");
+	map.setImage(65,51 ,"src/img/flowers3.png","grass");
+	map.setImage(65,52 ,"src/img/flowers1.png","grass");
+	map.setImage(60,50 ,"src/img/flowers2.png","grass");
+	map.setImage(61,50 ,"src/img/flowers2.png","grass");
+	map.setImage(62,50 ,"src/img/flowers1.png","grass");
+	map.setImage(63,50 ,"src/img/flowers3.png","grass");
+	map.setImage(63,53 ,"src/img/flowers3.png","grass");
+	map.setImage(63,52 ,"src/img/flowers1.png","grass");
+	map.setImage(62,51 ,"src/img/flowers6.png","grass");
+	map.setImage(61,52 ,"src/img/flowers5.png","grass");
+	map.setImage(60,53 ,"src/img/flowers6.png","grass");
+	map.setImage(51,52 ,"src/img/flowers4.png","grass");
+	map.setImage(51,53 ,"src/img/flowers8.png","grass");
+	map.setImage(50,54 ,"src/img/flowers9.png","grass");
+	map.setImage(49,52 ,"src/img/flowers7.png","grass");
+	map.setImage(43,53 ,"src/img/flowers8.png","grass");
+	map.setImage(44,54 ,"src/img/flowers9.png","grass");
+	map.setImage(43,55 ,"src/img/flowers1.png","grass");
+	map.setImage(42,54 ,"src/img/flowers9.png","grass");
+	map.setImage(39,50 ,"src/img/flowers7.png","grass");
+	map.setImage(39,51 ,"src/img/flowers2.png","grass");
+	map.setImage(31,55 ,"src/img/flowers8.png","grass");
+	map.setImage(28,48 ,"src/img/flowers6.png","grass");
+	map.setImage(27,48 ,"src/img/flowers3.png","grass");
+	map.setImage(27,49 ,"src/img/flowers5.png","grass");
+	map.setImage(28,49 ,"src/img/flowers4.png","grass");
+	map.setImage(26,53 ,"src/img/flowers8.png","grass");
+	map.setImage(25,53 ,"src/img/flowers6.png","grass");
+
+	map.setImage(14,58 ,"src/img/shell1.png","sand");
+	map.setImage(14,59 ,"src/img/shell2.png","sand");
+	map.setImage(18,60 ,"src/img/shell3.png","sand");
+	map.setImage(19,65 ,"src/img/shell4.png","sand");
+	map.setImage(22,67 ,"src/img/shell3.png","sand");
+	map.setImage(28,62 ,"src/img/shell3.png","sand");
+	map.setImage(27,62 ,"src/img/shell4.png","sand");
+	map.setImage(27,61 ,"src/img/shell2.png","sand");
+	map.setImage(30,58 ,"src/img/shell1.png","sand");
+	map.setImage(32,65 ,"src/img/shell3.png","sand");
+	map.setImage(32,66 ,"src/img/shell1.png","sand");
+	map.setImage(33,66 ,"src/img/shell1.png","sand");
+	map.setImage(33,67 ,"src/img/shell2.png","sand");
+	map.setImage(34,64 ,"src/img/shell3.png","sand");
+	map.setImage(36,67 ,"src/img/shell4.png","sand");
+	map.setImage(41,66 ,"src/img/shell1.png","sand");
+	map.setImage(38,57 ,"src/img/shell1.png","sand");
+	map.setImage(39,57 ,"src/img/shell3.png","sand");
+	map.setImage(39,59 ,"src/img/shell4.png","sand");
+	map.setImage(46,62 ,"src/img/shell2.png","sand");
+	map.setImage(47,64 ,"src/img/shell2.png","sand");
+	map.setImage(48,65 ,"src/img/shell1.png","sand");
+	map.setImage(48,66 ,"src/img/shell4.png","sand");
+	map.setImage(50,60 ,"src/img/shell3.png","sand");
+	map.setImage(53,59 ,"src/img/shell2.png","sand");
+	map.setImage(54,59 ,"src/img/shell1.png","sand");
+	map.setImage(54,58 ,"src/img/shell2.png","sand");
+	map.setImage(62,60 ,"src/img/shell2.png","sand");
+	map.setImage(62,64 ,"src/img/shell4.png","sand");
+	map.setImage(67,61 ,"src/img/shell2.png","sand");
+	map.setImage(68,65 ,"src/img/shell4.png","sand");
+	map.setImage(70,63 ,"src/img/shell3.png","sand");
+	map.setImage(73,64 ,"src/img/shell1.png","sand");
+	map.setImage(70,59 ,"src/img/shell2.png","sand");
+	map.setImage(71,58 ,"src/img/shell4.png","sand");
+	map.setImage(72,59 ,"src/img/shell3.png","sand");
+	map.setImage(72,57 ,"src/img/shell2.png","sand");
+	
+	map.setImage(12,75 ,"src/img/water1.png","water");
+	map.setImage(11,76 ,"src/img/water2.png","water");
+	map.setImage(13,78 ,"src/img/water3.png","water");
+	map.setImage(13,82 ,"src/img/water4.png","water");
+	map.setImage(14,82 ,"src/img/water5.png","water");
+	map.setImage(14,83 ,"src/img/water3.png","water");
+	map.setImage(14,84 ,"src/img/water2.png","water");
+	map.setImage(13,84 ,"src/img/water1.png","water");
+	map.setImage(17,86 ,"src/img/water5.png","water");
+	map.setImage(11,92 ,"src/img/water3.png","water");
+	map.setImage(13,92 ,"src/img/water4.png","water");
+	map.setImage(22,88 ,"src/img/water1.png","water");
+	map.setImage(23,89 ,"src/img/water1.png","water");
+	map.setImage(22,90 ,"src/img/water2.png","water");
+	map.setImage(31,83 ,"src/img/water3.png","water");
+	map.setImage(31,84 ,"src/img/water5.png","water");
+	map.setImage(30,85 ,"src/img/water3.png","water");
+	map.setImage(34,92 ,"src/img/water1.png","water");
+	map.setImage(35,92 ,"src/img/water2.png","water");
+	map.setImage(36,92 ,"src/img/water1.png","water");
+	map.setImage(37,79 ,"src/img/water1.png","water");
+	map.setImage(40,78 ,"src/img/water2.png","water");
+	map.setImage(40,80 ,"src/img/water4.png","water");
+	map.setImage(45,90 ,"src/img/water5.png","water");
+	map.setImage(45,88 ,"src/img/water3.png","water");
+	map.setImage(46,89 ,"src/img/water4.png","water");
+	map.setImage(49,72 ,"src/img/water3.png","water");
+	map.setImage(49,73 ,"src/img/water1.png","water");
+	map.setImage(49,74 ,"src/img/water1.png","water");
+	map.setImage(48,75 ,"src/img/water2.png","water");
+	map.setImage(49,76 ,"src/img/water3.png","water");
+	map.setImage(54,80 ,"src/img/water2.png","water");
+	map.setImage(55,81 ,"src/img/water4.png","water");
+	map.setImage(56,82 ,"src/img/water1.png","water");
+	map.setImage(60,73 ,"src/img/water5.png","water");
+	map.setImage(65,75 ,"src/img/water1.png","water");
+	map.setImage(72,69 ,"src/img/water2.png","water");
+	map.setImage(73,70 ,"src/img/water3.png","water");
+	map.setImage(73,71 ,"src/img/water4.png","water");
+	map.setImage(74,71 ,"src/img/water1.png","water");
+	map.setImage(72,78 ,"src/img/water5.png","water");
+	map.setImage(70,79 ,"src/img/water1.png","water");
+	map.setImage(68,81 ,"src/img/water3.png","water");
+	map.setImage(64,87 ,"src/img/water1.png","water");
+	map.setImage(65,87 ,"src/img/water2.png","water");
+	map.setImage(66,87 ,"src/img/water5.png","water");
+	map.setImage(67,87 ,"src/img/water4.png","water");
+	map.setImage(68,87 ,"src/img/water2.png","water");
+	map.setImage(66,89 ,"src/img/water4.png","water");
+	map.setImage(75,91 ,"src/img/water1.png","water");
+	map.setImage(76,91 ,"src/img/water5.png","water");
+	map.setImage(75,90 ,"src/img/water2.png","water");
+	map.setImage(76,90 ,"src/img/water3.png","water");
+	map.setImage(77,89 ,"src/img/water1.png","water");
+	map.setImage(87,91 ,"src/img/water5.png","water");
+	map.setImage(84,83 ,"src/img/water1.png","water");
+	map.setImage(84,85 ,"src/img/water2.png","water");
+	map.setImage(86,83 ,"src/img/water4.png","water");
+	map.setImage(86,84 ,"src/img/water3.png","water");
+	map.setImage(86,85 ,"src/img/water1.png","water");
+	map.setImage(88,83 ,"src/img/water2.png","water");
+	map.setImage(88,85 ,"src/img/water5.png","water");
+	map.setImage(94,88 ,"src/img/water1.png","water");
+	map.setImage(94,89 ,"src/img/water3.png","water");
+	map.setImage(94,91 ,"src/img/water2.png","water");
+}
+
+
+
+function makeCave() {
+	cave.setImages(6,14, 6,19 ,"src/img/dirt.png","alienbase");
+	cave.setImages(17,19, 16,19 ,"src/img/dirt.png","dirt");
+	cave.setImages(15,17, 15,17 ,"src/img/dirt.png","alienbase");
+	cave.setImages(14,14, 14,18 ,"src/img/alien_wall.png","wall");
+	cave.setImages(14,15, 15,17 ,"src/img/alien_wall.png","wall"); //set this to dirt on tablet event
+	cave.setImage(9,5 ,"src/img/alien_control-a1.png","aliensys");
+	cave.setImage(10,5 ,"src/img/alien_control-b1.png","aliensys");
+	cave.setImage(11,5 ,"src/img/alien_control-c1.png","aliensys");
+	cave.setImage(9,6 ,"src/img/alien_control-a2.png","aliensys");
+	cave.setImage(10,6 ,"src/img/alien_control-b2.png","aliensys");
+	cave.setImage(11,6 ,"src/img/alien_control-c2.png","aliensys");
+	cave.setImage(9,7 ,"src/img/alien_control-a3.png","aliensys");
+	cave.setImage(10,7 ,"src/img/alien_control-b3.png","aliensys");
+	cave.setImage(11,7 ,"src/img/alien_control-c3.png","aliensys");
+	cave.setImage(9,18 ,"src/img/alien_tool-a1.png","wall");
+	cave.setImage(10,18 ,"src/img/alien_tool-b1.png","wall");
+	cave.setImage(11,18 ,"src/img/alien_tool-c1.png","wall");
+	cave.setImage(9,19 ,"src/img/alien_tool-a2.png","wall");
+	cave.setImage(10,19 ,"src/img/alien_tool-b2.png","wall");
+	cave.setImage(11,19 ,"src/img/alien_tool-c2.png","wall");
+	cave.setImage(8,9 ,"src/img/alien_stand-1.png","wall");
+	cave.setImage(8,10 ,"src/img/alien_stand-2.png","wall");
+	cave.setImage(8,13 ,"src/img/alien_stand-1.png","wall");
+	cave.setImage(8,14 ,"src/img/alien_stand-2.png","wall");
+	cave.setImage(12,9 ,"src/img/alien_stand-1.png","wall");
+	cave.setImage(12,10 ,"src/img/alien_stand-2.png","wall");
+	cave.setImage(12,13 ,"src/img/alien_stand-1.png","wall");
+	cave.setImage(12,14 ,"src/img/alien_stand-2.png","wall");
+	cave.setImages(20,23, 18,20 ,"src/img/dirt.png","dirt");
+	cave.setImages(21,22, 18,19 ,"src/img/dark.png","wall");
+	cave.setImages(23,25, 13,17 ,"src/img/dirt.png","dirt");
+	cave.setImage(26,16 ,"src/img/dirt.png","dirt");
+	cave.setImages(22,22, 14,17 ,"src/img/dirt.png","dirt");
+	cave.setImages(24,26, 12,12 ,"src/img/dirt.png","dirt");
+	cave.setImages(25,25, 8,11 ,"src/img/dirt.png","dirt");
+	cave.setImages(23,24, 7,9 ,"src/img/dirt.png","dirt");
+	cave.setImages(27,27, 11,14 ,"src/img/dirt.png","dirt");
+	cave.setImages(28,31, 13,14 ,"src/img/dirt.png","dirt");
+	cave.setImage(28,13 ,"src/img/dark.png","wall");
+	cave.setImage(30,14 ,"src/img/dark.png","wall");
+	cave.setImages(30,30, 9,12 ,"src/img/dirt.png","dirt");
+	cave.setImages(31,31, 4,9 ,"src/img/dirt.png","dirt");
+	cave.setImages(29,30, 7,7 ,"src/img/dirt.png","dirt");
+	cave.setImages(29,30, 5,5 ,"src/img/dirt.png","dirt");
+	cave.setImages(28,29, 4,4 ,"src/img/dirt.png","dirt");
+	cave.setImages(32,33, 4,4 ,"src/img/dirt.png","dirt");
+	cave.setImages(33,35, 5,5 ,"src/img/dirt.png","dirt");
+	cave.setImages(35,35, 6,7 ,"src/img/dirt.png","dirt");
+	cave.setImages(36,40, 7,16 ,"src/img/dirt.png","dirt");
+	cave.setImage(36,12 ,"src/img/dark.png","wall");
+	cave.setImages(34,35, 9,9 ,"src/img/dirt.png","dirt");
+	cave.setImages(33,34, 10,10 ,"src/img/dirt.png","dirt");
+	cave.setImages(34,35, 14,16 ,"src/img/dirt.png","dirt");
+	cave.setImages(33,33, 13,15 ,"src/img/dirt.png","dirt");
+	cave.setImages(41,43, 8,15 ,"src/img/dirt.png","dirt");
+	cave.setImages(44,44, 10,15 ,"src/img/dirt.png","dirt");
+	cave.setImages(45,45, 9,12 ,"src/img/dirt.png","dirt");
+	cave.setImages(38,39, 17,19 ,"src/img/dirt.png","dirt");
+	cave.setImages(34,38, 20,20 ,"src/img/dirt.png","dirt");
+	cave.setImages(32,32, 18,19 ,"src/img/dirt.png","dirt");
+	cave.setImages(33,33, 19,22 ,"src/img/dirt.png","dirt");
+	cave.setImages(31,32, 21,22 ,"src/img/dirt.png","dirt");
+	cave.setImages(27,30, 20,22 ,"src/img/dirt.png","dirt");
+	cave.setImages(28,29, 19,19 ,"src/img/dirt.png","dirt");
+	cave.setImages(28,30, 23,23 ,"src/img/dirt.png","dirt");
+	cave.setImages(26,26, 20,21 ,"src/img/dirt.png","dirt");
+	cave.setImages(46,48, 11,12 ,"src/img/dirt.png","dirt");
+	cave.setImage(47,13 ,"src/img/cave_exit-a.png","cave");
+	cave.setImage(48,13 ,"src/img/cave_exit-b.png","cave");
+	cave.setImage(28,22 ,"src/img/skeleton.png","bones");
+	cave.setImage(36,11 ,"src/img/skeleton.png","bones");
+	cave.setImage(29,19 ,"src/img/skulls.png","bones");
+	cave.setImage(28,7 ,"src/img/skulls.png","bones");
+	cave.setImage(24,17 ,"src/img/skulls.png","bones");
+}
+
+
+
+
+
+
+	function setupTypewriter(t) {
+	    var HTML = t.innerHTML;
+	    t.innerHTML = "";
+	    var cursorPosition = 0,
+		tag = "",
+		writingTag = false,
+		tagOpen = false,
+		typeSpeed = 20, //speed control
+		tempTypeSpeed = 0;
+	    var type = function() {
+		if (writingTag === true) {
+		    tag += HTML[cursorPosition];
+		}
+		if (HTML[cursorPosition] === "<") {
+		    tempTypeSpeed = 0;
+		    if (tagOpen) {
+			tagOpen = false;
+			writingTag = true;
+		    } else {
+			tag = "";
+			tagOpen = true;
+			writingTag = true;
+			tag += HTML[cursorPosition];
+		    }
+		}
+		if (!writingTag && tagOpen) {
+		    tag.innerHTML += HTML[cursorPosition];
+		}
+		if (!writingTag && !tagOpen) {
+		    if (HTML[cursorPosition] === " ") {
+			tempTypeSpeed = 0;
+		    }
+		    else {
+			tempTypeSpeed = (Math.random() * typeSpeed) + 10; //secondary speed control
+		    }
+		    t.innerHTML += HTML[cursorPosition];
+		}
+		if (writingTag === true && HTML[cursorPosition] === ">") {
+		    tempTypeSpeed = (Math.random() * typeSpeed) + 10; //
+		    writingTag = false;
+		    if (tagOpen) {
+			var newSpan = document.createElement("span");
+			t.appendChild(newSpan);
+			newSpan.innerHTML = tag;
+			tag = newSpan.firstChild;
+		    }
+		}
+		cursorPosition += 1;
+		if (cursorPosition < HTML.length) {
+		    setTimeout(type, tempTypeSpeed);
+		}
+	    };
+	    return {
+		type: type
+	    };
+	}
+
+function progressbar() { //a silly way to waste time
+	hide("home_start");
+	show("progBar0");
+	scope = new Stage(9,9,"player_scope");
+	map = new Stage(100,100,"overworld_map");
+	cave = new Stage(50,25,"cave_map");
+	uwcave = new Stage(100,60,"uwcave_map");
+	//moved inits into progress bar for lulz, now it kinda represents load! \o/
+	var pbar = document.getElementById("progBar");	 
+	var pprog = 10;
+	var intid = setInterval(function() {
+		if (pprog >= 33) {
+			scope.initialize("src/img/dark.png", "sight"); // 7
+			map.initialize("src/img/grass.png", "grass"); // 1
+			cave.initialize("src/img/dark.png", "wall"); // 2
+			uwcave.initialize("src/img/underwater.png","water"); // 5
+			clearInterval(intid); 
+			intid = setInterval(function() {
+				if (pprog >= 44) {
+					makeOverworld(); // 3
+					clearInterval(intid);
+					intid = setInterval(function() {
+						if (pprog >= 67) {
+							makeCave(); // 4
+							clearInterval(intid);
+							intid = setInterval(function() {
+								if (pprog >= 73) {
+									makeUnderwatercave(); // 6
+									clearInterval(intid);
+									intid = setInterval(function() {
+										if (pprog >= 100) { 
+											circularScope(); // 8
+											blankScope();	// 9
+											clearInterval(intid);
+											//END pbarEVENT
+											play_intro();
+											//ALTp2 continued();
+										}
+										else {
+											pprog++; 
+											pbar.style.width = pprog + '%'; 
+											pbar.innerHTML = pprog * 1	+ '%';
+										}
+									}, 40);
+								}
+								else {
+									pprog++; 
+									pbar.style.width = pprog + '%'; 
+									pbar.innerHTML = pprog * 1	+ '%';
+								}
+							}, 110);
+						}
+						else {
+							pprog++; 
+							pbar.style.width = pprog + '%'; 
+							pbar.innerHTML = pprog * 1	+ '%';
+						}
+					}, 90);
+				}
+				else {
+					pprog++; 
+					pbar.style.width = pprog + '%'; 
+					pbar.innerHTML = pprog * 1	+ '%';
+				}
+			}, 200);
+		}
+		else {
+			pprog++; 
+			pbar.style.width = pprog + '%'; 
+			pbar.innerHTML = pprog * 1	+ '%';
+		}
+	}, 100);
+}
+
+
+
+
+
+
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+tag.onerror = onPlayerError;
+tag.onabort = onPlayerError;
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+var player;
+function onYouTubeIframeAPIReady() {
+	player = new YT.Player('player', {
+		height: '390',
+		width: '640',
+		videoId: '3ubI4mhv5u0',
+		events: {
+			'onReady': onPlayerReady,
+			'onStateChange': onPlayerStateChange,
+			'onError': onPlayerError
+		}
+	});
+}
+function onPlayerReady(event) {
+	//event.target.playVideo();
+}
+var done = false;
+function onPlayerStateChange(event) {
+	if (event.data == YT.PlayerState.PLAYING && !done) {
+		creditsBGM.pause();
+		//setTimeout(stopVideo, 193000);
+		done = true;
+	}
+}
+function stopVideo() {
+	player.stopVideo();
+}
+//player.playVideo()
+function onPlayerError(){
+	document.getElementById("player").innerHTML = "<code>Youtube video failed to load... give it a view @ https://youtu.be/3ubI4mhv5u0 </code>";
+	credits2 = false;
+}
+
+
+</script>
+

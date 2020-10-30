@@ -1,7 +1,44 @@
 <!DOCTYPE html>
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+    <head>
+        <title>index Redirect</title>
+        <meta http-equiv = "refresh" content="5; url=web_portfolio.html" />
+        <link href="css/style.css" type="text/css" rel="stylesheet"></link>
+        <style>
+            nav button{
+                width: auto;
+                height: 2em;
+                font-size: 2em;
+                font-weight: bold;
+                
+            }
+            nav button a{
+                padding: auto;
+                margin-top: auto;
+                margin-bottom: auto;
+                text-decoration: none;
+                color: #777777;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <button><a href="web_portfolio.html"> Web Portfolio</a></button>
+        </nav>
+        <p>I'm hosted with GitHub Pages.</p>
+        <h1>I'll redirect you to my web portfolio</h1> <small> (made for a course and refitted) </small>
+        <h1 id="time_until_redirect"><h1>
+    </body>
 </html>
+
+<script>
+    var time = 5;
+    document.getElementById("time_until_redirect").innerHTML = time+" seconds until redirect";
+    var countdown = setInterval(function(){
+        time--;
+        document.getElementById("time_until_redirect").innerHTML = time+" seconds until redirect";
+        if (time < 1)
+            clearInterval(countdown);
+    },1000);
+</script>
+
