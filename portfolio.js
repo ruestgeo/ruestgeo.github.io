@@ -1,11 +1,4 @@
-function hamburger_toggle(x) {
-    console.log("hamburger toggle on ["+x+"]");
-    document.getElementById(x).classList.toggle("hamburger_change");
-}
-function hamburger_reset(x){
-    console.log("hamburger reset on ["+x+"]");
-    document.getElementById(x).classList.remove("hamburger_change");
-}
+
 
 $(document).ready(function() {
 
@@ -46,9 +39,8 @@ $(document).ready(function() {
         console.log("++: size "+curSize+" to "+(curSize+2));
         if (curSize < 24){
             $('body').css('font-size', (curSize+2)+"px");
-            hamburger_reset('hamburger_menu');
             myMenu.removeScroll();
-            setTimeout(function() {myMenu.recalculateMenu();}, 300);
+            hamburger_reset('hamburger_menu');
         }
             
     });
@@ -58,9 +50,8 @@ $(document).ready(function() {
         console.log("//: size "+curSize+" to "+defaultFontSize);
         if (curSize != defaultFontSize){
             $('body').css('font-size', defaultFontSize+"px");
-            hamburger_reset('hamburger_menu');
             myMenu.removeScroll();
-            setTimeout(function() {myMenu.recalculateMenu();}, 300);
+            hamburger_reset('hamburger_menu');
         }
     });
     
@@ -69,9 +60,8 @@ $(document).ready(function() {
         console.log("--: size "+curSize+" to "+(curSize-2));
         if (curSize > 9){
             $('body').css('font-size', (curSize-2)+"px");
-            hamburger_reset('hamburger_menu');
             myMenu.removeScroll();
-            setTimeout(function() {myMenu.recalculateMenu();}, 300);
+            hamburger_reset('hamburger_menu');
         }
     });
 
@@ -202,8 +192,7 @@ $(document).ready(function() {
     }
 
 
-
-    $('#p1-b').click(function() {
+    $('#p0-b').click(function() {
         if (tabletView.matches && !phoneView.matches){
             console.log($(this).attr('id')+" to slideshow slide");
             slideIndex = 0;
@@ -211,7 +200,7 @@ $(document).ready(function() {
         }
         else console.log($(this).attr('id')+" button pressed");
     });
-    $('#p2-b').click(function() {
+    $('#p1-b').click(function() {
         if (tabletView.matches && !phoneView.matches){
             console.log($(this).attr('id')+" to slideshow slide");
             slideIndex = 1;
@@ -219,7 +208,7 @@ $(document).ready(function() {
         }
         else console.log($(this).attr('id')+" button pressed");
     });
-    $('#p3-b').click(function() {
+    $('#p2-b').click(function() {
         if (tabletView.matches && !phoneView.matches){
             console.log($(this).attr('id')+" to slideshow slide");
             slideIndex = 2;
@@ -227,7 +216,7 @@ $(document).ready(function() {
         }
         else console.log($(this).attr('id')+" button pressed");
     });
-    $('#p4-b').click(function() {
+    $('#p3-b').click(function() {
         if (tabletView.matches && !phoneView.matches){
             console.log($(this).attr('id')+" to slideshow slide");
             slideIndex = 3;
@@ -235,7 +224,7 @@ $(document).ready(function() {
         }
         else console.log($(this).attr('id')+" button pressed");
     });
-    $('#p5-b').click(function() {
+    $('#p4-b').click(function() {
         if (tabletView.matches && !phoneView.matches){
             console.log($(this).attr('id')+" to slideshow slide");
             slideIndex = 4;
@@ -243,7 +232,7 @@ $(document).ready(function() {
         }
         else console.log($(this).attr('id')+" button pressed");
     });
-    $('#p6-b').click(function() {
+    $('#p5-b').click(function() {
         if (tabletView.matches && !phoneView.matches){
             console.log($(this).attr('id')+" to slideshow slide");
             slideIndex = 5;
@@ -251,7 +240,7 @@ $(document).ready(function() {
         }
         else console.log($(this).attr('id')+" button pressed");
     });
-    $('#p7-b').click(function() {
+    $('#p6-b').click(function() {
         if (tabletView.matches && !phoneView.matches){
             console.log($(this).attr('id')+" to slideshow slide");
             slideIndex = 6;
@@ -259,7 +248,7 @@ $(document).ready(function() {
         }
         else console.log($(this).attr('id')+" button pressed");
     });
-    $('#p8-b').click(function() {
+    $('#p7-b').click(function() {
         if (tabletView.matches && !phoneView.matches){
             console.log($(this).attr('id')+" to slideshow slide");
             slideIndex = 7;
@@ -267,10 +256,18 @@ $(document).ready(function() {
         }
         else console.log($(this).attr('id')+" button pressed");
     });
-    $('#p9-b').click(function() {
+    $('#p8-b').click(function() {
         if (tabletView.matches && !phoneView.matches){
             console.log($(this).attr('id')+" to slideshow slide");
             slideIndex = 8;
+            showSlides(slideIndex);
+        }
+        else console.log($(this).attr('id')+" button pressed");
+    });
+    $('#p9-b').click(function() {
+        if (tabletView.matches && !phoneView.matches){
+            console.log($(this).attr('id')+" to slideshow slide");
+            slideIndex = 9;
             showSlides(slideIndex);
         }
         else console.log($(this).attr('id')+" button pressed");

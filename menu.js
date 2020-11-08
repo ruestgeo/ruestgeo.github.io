@@ -20,9 +20,43 @@
 
 'use strict';
 
+function toggleFadables (visible) {
+  for (let elem of document.getElementsByClassName("fadable")){
+    if (!visible && elem.classList.contains("fade-out")){
+      elem.classList.remove("fade-out");
+      elem.classList.add("fade-in");
+    }
+    else if (visible && elem.classList.contains("fade-in")) {
+      elem.classList.remove("fade-in");
+      elem.classList.add("fade-out");
+    }
+  }
+}
+function toggleFadable (elemId){
+  let elem = document.getElementById(elemId);
+  if (elem.classList.contains("fade-out")){
+    elem.classList.remove("fade-out");
+    elem.classList.add("fade-in");
+  }
+  else if (elem.classList.contains("fade-in")) {
+    elem.classList.remove("fade-in");
+    elem.classList.add("fade-out");
+  }
+}
+
+function hamburger_toggle(x) {
+  console.log("hamburger toggle on ["+x+"]");
+  //event listener handles the toggle logic
+}
+function hamburger_reset(x){
+  console.log("hamburger reset on ["+x+"]");
+  setTimeout(function() {myMenu.recalculateMenu();}, 300);
+}
+
 class Menu {
-  constructor () {
-    this._menu = document.querySelector('.js-menu');
+  constructor (menu) {
+    if ( !menu  ||  !(this._menu=document.getElementById(menu)) )
+      this._menu = document.querySelector('.js-menu');
     this._menuContents = this._menu.querySelector('.js-menu-contents');
     this._menuToggleButton = this._menu.querySelector('.js-menu-toggle');
     this._menuTitle = this._menu.querySelector('.js-menu-title');
@@ -48,18 +82,29 @@ class Menu {
   }
 
   recalculateMenu(){
-    this._menu.classList.remove('menu--active');
-    this._animate = false;
+    console.log('recalculating menu')
+    this.deactivate();
     this.expand(); //this.immediate_expand();
     this._calculateScales();
     this._createEaseAnimations();
     this.collapse(); //this.immediate_collapse();
+    this._menu.classList.remove('menu--expanded');
+    this._menu.classList.remove('menu--scroll');
+    this._menuContents.classList.remove('menu__contents--expanded');
+    this._menu.classList.add('menu--collapsed');
+    this._menuContents.classList.add('menu__contents--collapsed');
+    console.log(this._expanded);
     this.activate();
   }
 
   activate () {
     this._menu.classList.add('menu--active');
     this._animate = true;
+  }
+
+  deactivate (){
+    this._menu.classList.remove('menu--active');
+    this._animate = false;
   }
 
   collapse () {
@@ -72,6 +117,7 @@ class Menu {
     const invY = 1 / y;
     this._menu.style.transform = `scale(${x}, ${y})`;
     this._menuContents.style.transform = `scale(${invX}, ${invY})`;
+    this._menuToggleButton.classList.remove('hamburger_change');
     if (!this._animate) {
       return;
     }
@@ -86,6 +132,7 @@ class Menu {
     this._expanded = true;
     this._menu.style.transform = `scale(1, 1)`;
     this._menuContents.style.transform = `scale(1, 1)`;
+    this._menuToggleButton.classList.add('hamburger_change');
     if (!this._animate) {
       return;
     }
@@ -118,12 +165,15 @@ class Menu {
 
 
   toggle () {
+    toggleFadables(this._expanded);
     if (this._expanded) {
       this.collapse();
       return;
     }
     this.expand();
   }
+
+
 
   _addEventListeners () {
     this._menuToggleButton.addEventListener('click', this.toggle);
@@ -280,4 +330,4 @@ class Menu {
   }
 }
 
-var myMenu = new Menu();
+var myMenu = new Menu('navigation');

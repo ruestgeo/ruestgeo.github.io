@@ -13,7 +13,7 @@
 <body ontouchstart="">
 	<a id="space-invader-icon" href="#my_info"><div id="space-invader"></div></a>
 	
-	<nav id="navigation" class="menu js-menu  scrollbar">
+	<nav id="navigation" class="menu js-menu scrollbar">
 		<div class="menu__contents js-menu-contents">
 			<div class="menu_button" id="nav_expand">
 				<button class="menu__toggle js-menu-toggle" onclick="hamburger_toggle('hamburger_menu')">
@@ -28,6 +28,7 @@
 			</div>
 			<ul class="menu__items">
 				<li class="menu__item menu_section">Navigation</li>
+				<li class="menu__item"><a id="github-a" href="https://github.com/ruestgeo/"><button id="github-b">GitHub</button></a></li>
 				<li class="menu__item"><a id="myinfo-a" href="#my_info"><button id="myinfo-b">My Profile</button></a></li>
 				<li class="menu__item"><a id="p0-a" href="#project_0"><button id="p0-b">Project 0</button></a></li>
 				<li class="menu__item"><a id="p1-a" href="#project_1"><button id="p1-b">Project 1</button></a></li>
@@ -46,15 +47,24 @@
 	
 	
 
-	<div id="text_resize">
-		<button id="smaller_text"><strong>smaller</strong></button>
-		<button id="reset_text"><strong>reset</strong></button>
-		<button id="bigger_text"><strong>larger</strong></button>
+	<div id="text_resize" class="fadable fade-out">
+		<ul>
+			<li id="smaller_text"><button><strong>smaller</strong></button></li>
+			<li id="reset_text"><button><strong>reset</strong></button></li>
+			<li id="bigger_text"><button><strong>larger</strong></button></li>
+			<li id="close_resize"><button onclick="toggleFadable('text_resize');"><strong>✖</strong></button></li>
+		</ul>
 	</div>
 
 	<div id="contactsticky">
 		<div id="contactsticky2">
 			<span>You can find my contact information at</span>&emsp;<a href="https://www.linkedin.com/in/geoffrey-ruest/" target="_blank">linkedin.com/in/geoffrey-ruest/</a>
+			<!--nav class="nav_bar">
+				<ul>
+					<li><a href="web_portfolio.html"> Web Portfolio</a></li>
+					<li><a href="https://github.com/ruestgeo/"> GitHub profile</a></li>
+				</ul>
+			</nav-->
 		</div>
 	</div>
 
@@ -65,9 +75,9 @@
 		</div>
 		<div id="introduction">
 			<h2>I am a software, app, and web developer.</h2>
-			<p>I write code, assemble and release software for various systems, applications, and websites.</p>
+			<p>I write code, assemble and release software for various platforms, services, and tasks.</p>
 			<p>I've graduated from the University of Toronto Mississauga with an Honours Bachelor degree in Computer Science as a specialist.</p>
-			<p>I am a full-stack developer, meaning I deal with both front-end and back-end code and know how to make the whole thing work together.</p>
+			<p>I am a full-stack developer, meaning I deal with programming and design for both the front-end and back-end, and know how to make the whole thing work together.</p>
 			<p>I take a proactive approach to design and development, and have determination to complete tasks within specifications, budget, and schedule.</p>
 			<p>I have worked with various programming languages including C, C++, C#, Java, Python, and JavaScript, as well as database management systems such as MySQL, SQLite, MongoDB, and Neo4j.</p>
 			<p>I am open to and confident in learning new technologies to accomplish a task.</p>
@@ -75,9 +85,9 @@
 			<p>I also have experience with web application and socket programming, parallel programming, scalable architecture, AI design and programming, computer vision, game development with Unity, 3D modelling and video editing on Blender, database design, various network and web technologies, and more.</p>
 			<p>I have worked with IDEs such as Eclipse, Visual Studio and Android Studio, code editors such as Visual Studio Code, and have wrote code using plain text editors.</p>
 			<p>I have experience working both as an individual and as a team, and have worked on a scrum project using Jira for project management.</p>
-			<p>You can check out some of my projects on my GitHub page  <a href="https://github.com/ruestgeo/">https://github.com/ruestgeo/</a></p>
+			<p>You can check out some of my projects on my GitHub page __ <a href="https://github.com/ruestgeo/">github.com/ruestgeo/</a></p>
 			<br>
-			<p>I am able to contribute and work well with teams by offering suggestions that will benefit the project or work flow.</p>
+			<p>I am able to contribute and work well in team by offering suggestions that will benefit the project or work flow.</p>
 			<p>I aim to design systems for user satisfaction, ease-of-use, and comfort.</p>
 			<p>I have great interest in the game development industry, but I find software development pretty neat as well!</p>
 			<p>When I'm not indulging in my hobbies I'm usually writing code for a project.</p>
@@ -100,14 +110,16 @@
 
 			<button id="p0" class="collapsable_div"><a class="anchor" name="project_0"></a>Project 0</button>
 			<div id="project0" class="collapse_div">
-				<h3><a href="settling-in/settling-in_(full).html"  target="_blank">Settling-In</a><br><small>project for a course</small></h3>
-				
-				<p>This is a game I made using only HTML, CSS, and JavaScript for an English course during the summer where the goal of the project was to create an immersive experience through textual elements of a game.</p>
-				<img id="p0img" src="images/settling-in.png" alt="Settling-in image failed to load :<">
-				<p>The premise of the project was to use an online creation tool like Twine to create a story-based game, however I took up the challenge of making something from scratch using the skills I had at the time.<br>
-					The initial game page had very few elements and poor design choices or missing features.  I received the critique and updated the game with many more features and story, fixing the game for a more enjoyable user experience.<br>
-					<small>--Something interesting to note is that the loading bar doesn't really do anything! It's just for style! but I did end up putting some loading parts in during the "loading" animations just to give it a bit more feel, so I guess it does something after all?--</small>
+				<h3>MOTM Mobile App<br><small>project for a course</small></h3>
+				<p>In a team of seven, we created a media reviewing app with a 3-tier architecture. <br>
+					The client side was developed using Android Studio for Android version 4.4 and up, which communicated with the server to fetch data for various views. <br>
+					The server then communicates with the database to obtain and return any necessary data. <br>
+					Authorization data (necessary for certain requests) is securely sent over HTTPS along with the request. <br>
+					Sessions were used to track authorized users. <br>
+					Passwords were hashed using PBKDF2 to be securely stored in the database, and similarly verified.
 				</p>
+				<div><img id="p0img" src="images/MOTM_app.jpg" alt="MOTM app image failed to load :<"></div>
+				<div><img id="p0img2" src="images/MOTM_achitecture.jpg" alt="MOTM architecture image failed to load :<"></div>
 			</div>
 
 
@@ -140,16 +152,13 @@
 
 			<button id="p3" class="collapsable_div"><a class="anchor" name="project_3"></a>Project 3</button>
 			<div id="project3" class="collapse_div">
-				<h3>MOTM Mobile App<br><small>project for a course</small></h3>
-				<p>In a team of seven, we created a media reviewing app with a 3-tier architecture. <br>
-					The client side was developed using Android Studio for Android version 4.4 and up, which communicated with the server to fetch data for various views. <br>
-					The server then communicates with the database to obtain and return any necessary data. <br>
-					Authorization data (necessary for certain requests) is securely sent over HTTPS along with the request. <br>
-					Sessions were used to track authorized users. <br>
-					Passwords were hashed using PBKDF2 to be securely stored in the database, and similarly verified.
+				<h3>Discord Bot</h3>
+				<p>Using Node.js (version 12, and the discord.js version 12 module) I created a discord bot intended for light use to do various tasks on discord both autonomously and on command. <br>
+					The bot is modular and extensible in that you are able to remove or add in new functionality by adding or removing files from the specified directory. <br>
+					It is also configurable via external config files. 
+					The bot also features an tiered authorization system, where commands can be given a certain auth-level to prevent non-authorized users from using those commands.
 				</p>
-				<div><img id="p3img" src="images/MOTM_app.jpg" alt="MOTM app image failed to load :<"></div>
-				<div><img id="p3img2" src="images/MOTM_achitecture.jpg" alt="MOTM architecture image failed to load :<"></div>
+				<div><img id="p3img" src="images/discordbot.png" alt="discord bot image failed to load :<"></div>
 			</div>
 
 
@@ -170,18 +179,6 @@
 
 			<button id="p5" class="collapsable_div"><a class="anchor" name="project_5"></a>Project 5</button>
 			<div id="project5" class="collapse_div">
-				<h3>Discord Bot</h3>
-				<p>Using Node.js (version 12, and the discord.js version 12 module) I created a discord bot intended for light use to do various tasks on discord both autonomously and on command. <br>
-					The bot is modular and extensible in that you are able to remove or add in new functionality by adding or removing files from the specified directory. <br>
-					It is also configurable via external config files. 
-					The bot also features an tiered authorization system, where commands can be given a certain auth-level to prevent non-authorized users from using those commands.
-				</p>
-				<div><img id="p5img" src="images/discordbot.png" alt="discord bot image failed to load :<"></div>
-			</div>
-
-
-			<button id="p6" class="collapsable_div"><a class="anchor" name="project_6"></a>Project 6</button>
-			<div id="project6" class="collapse_div">
 				<h3>Urbivore<br><small>project for a course</small></h3>
 				<p> In a team of four, we designed and created an early prototype for a virtual reality game, with the goal of having an immersive experience that is both educational and entertaining. <br>
 					We created the game using the Unity engine, using assets from the Unity store as well as creating a few of our own on Blender. <br>
@@ -189,21 +186,34 @@
 					In addition to natural events, the player would experience events and trends such as decaying amounts of non-harmful resources over time as well as through increased proximity to urban areas. <br>
 					For this project I handled designing and implementing all functionality.
 				</p>
-				<div><img id="p6img" src="images/urbivore.jpg" alt="urbivore game image failed to load :<"></div>
+				<div><img id="p5img" src="images/urbivore.jpg" alt="urbivore game image failed to load :<"></div>
 			</div>
 
 
-			<button id="p7" class="collapsable_div"><a class="anchor" name="project_7"></a>Project 7</button>
-			<div id="project7" class="collapse_div">
+			<button id="p6" class="collapsable_div"><a class="anchor" name="project_6"></a>Project 6</button>
+			<div id="project6" class="collapse_div">
 				<h3>Warehouse Wars<br><small>project for a course</small></h3>
 				<p> Using Node.js I created an offline single player version and an online multiplayer version of web game that supports controls for mobile and desktop where the goal is to live and trap all enemy AI with boxes surrounding it. <br>
 					The web app game was outfitted with multiple levels of difficulty, an account and scoring system, a lives system, various game mechanics and AI enemies, a "room" or channel system with automatic management functionality, as well as a chat system. <br>
 					I worked in a team of 2, where my partner focused on the database and react components, while I focused on making the multiplayer server and creating the game. <br>
 					Each AI was created by myself, as well as all the additional game mechanics I added in that extended over the given requirements.
 				</p>
-				<div><img id="p7img" src="images/warehouse-wars.jpg" alt="ww game image failed to load :<"></div>
-				<div><img id="p7img2" src="images/warehouse-wars-multiplayer.jpg" alt="ww-multiplayer image failed to load :<"></div>
+				<div><img id="p6img" src="images/warehouse-wars.jpg" alt="ww game image failed to load :<"></div>
+				<div><img id="p6img2" src="images/warehouse-wars-multiplayer.jpg" alt="ww-multiplayer image failed to load :<"></div>
 				<p>I have recently recreated the game on Java for practice, improving the structure and adding support for multi-threading and a much larger number of rooms using room IDs or tokens, however removing the account and authorization system.</p>
+			</div>
+
+
+			<button id="p7" class="collapsable_div"><a class="anchor" name="project_7"></a>Project 7</button>
+			<div id="project7" class="collapse_div">
+				<h3><a href="settling-in/settling-in_(full).html"  target="_blank">Settling-In</a><br><small>project for a course</small></h3>
+				
+				<p>This is a game I made using only HTML, CSS, and JavaScript for an English course during the summer where the goal of the project was to create an immersive experience through textual elements of a game.</p>
+				<img id="p7img" src="images/settling-in.png" alt="Settling-in image failed to load :<">
+				<p>The premise of the project was to use an online creation tool like Twine to create a story-based game, however I took up the challenge of making something from scratch using the skills I had at the time.<br>
+					The initial game page had very few elements and poor design choices or missing features.  I received the critique and updated the game with many more features and story, fixing the game for a more enjoyable user experience.<br>
+					<small>--Something interesting to note is that the loading bar doesn't really do anything! It's just for style! but I did end up putting some loading parts in during the "loading" animations just to give it a bit more feel, so I guess it does something after all?--</small>
+				</p>
 			</div>
 			
 
