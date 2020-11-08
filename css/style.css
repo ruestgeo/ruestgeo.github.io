@@ -57,6 +57,17 @@ iframe{
 .LI-badge-container{
   	width: 100% !important; /*make the badge container fill the entire width*/
 }
+.LI-badge-container,
+.LI-name a,
+.LI-more-info a,
+.LI-badge-container.horizontal.dark div, 
+.LI-badge-container.horizontal.dark ul, 
+.LI-badge-container.horizontal.dark li,
+.LI-badge-container.horizontal.dark img,
+.LI-badge-container.horizontal.dark p {
+	background-color: #3a3a3a !important;
+}
+
 
 .nav_bar {
 	font-weight: bold;
