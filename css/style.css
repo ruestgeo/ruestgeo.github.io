@@ -50,6 +50,10 @@ iframe{
 	max-height:  32em;
 }
 
+.LI-simple-link{
+	text-align: center;
+	display: block;
+}
 .LI-profile-badge{
 	margin: auto;
   	width: 50%;
